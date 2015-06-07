@@ -260,8 +260,9 @@ quelques-unes :
     Quelques valeurs: 42 3.1415 Amelia
 
 Une variable peut être vue comme une boite portant une étiquette :
-- Elle contient quelque chose (on dit que la variable contient une ``valeur``)
-- Elle a un nom (comme l'inscription sur l'étiquette de la boite)
+    * Elle contient quelque chose (on dit que la variable contient une
+        ``valeur``)
+    * Elle a un nom (comme l'inscription sur l'étiquette de la boite)
 
 Deux variables (ayant des noms différent) peuvent contenir la même valeur :
 
