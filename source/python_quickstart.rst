@@ -170,96 +170,111 @@ fichier ``visitingcard.py`` pour améliorer la lisibilité. Ici, nous
 avons séparé l'entête du message d'avec son contenu et d'avec sa fin.
 
 
-Calculateur d'IMC
-=================
+Envoyer du Morse grâce à Python
+===============================
 
-Essayons de créer un programme simple permettant de calculer son `IMC`
-(`Indice de Masse Corporelle`_). En anglais on parle de `BMI` (Body
-Mass Index).
+Essayons de créer un programme simple permettant d'envoyer des signaux en
+Morse.
 
-La formule de ce calcul est la suivante::
+En cas d'urgence et de panique liée à cet ordinateur, vous pouvez avoir besoin
+d'envoyer un signal de détresse.
 
-    IMC = (masse (kg)) / (taille (m)) au carré
+Le signal de détresse, SOS (Save Our Soul) est en effet le signal le plus connu
+pour communiquer sa situation critique par la lumière ou par le son.
+Il est utilisé par les bateaux et par les naufragé•e•s en situation de
+détresse.
+Nous allons pour notre part commencer à afficher des signaux morse depuis
+le terminal. En commencant par notre fameux signal de détresse SOS.
 
-Nous savons déjà faire une division, une puissance et afficher des
-nombres. Il ne nous reste plus qu`à créer un fichier ``imc.py`` et à
-essayer d'écrire le programme qui calcule l'IMC:
+Pour écrire un SOS en morse :
 
+S.O.S va se traduire en morse par (... --- ...) soit 3 signaux courts suivis de
+3 signaux longs.
+Le S est donc égal à "..." et le O à "---"
+
+Nous connaissons déjà la fonction :func:`print` (pour afficher des choses).
+Nous allons donc créer un '''programme''' qui stocke les deux lettres et leur
+équivalent en morse dans des '''variables'''.
+
+Pour commencer, créez un fichier ``morse.py`` puis écrivez à l'intérieur le
+programme suivant :
 
 .. testcode::
 
-    print("Votre IMC est :", 65.5 / (1.75 ** 2))
+    print("...---...")
 
 Lancez votre programme comme ceci::
 
-    $ python imc.py
+    $ python morse.py
 
-Vous obtenez::
+Vous obtenez:
 
 .. testoutput::
 
-    Votre IMC est : 21.387755102040817
+    ...---...
 
 Comme vous le voyez notre programme a besoin de quelques améliorations:
 
-1. Si quelqu'un d'autre souhaite utiliser le programme nous devons
-   modifier le fichier ``imc.py``.
-
-2. Pour une personne qui ne connait pas les tables d'IMC par cœur,
-   21.387755102 ne veut pas dire grand chose.
-
-3. Afficher autant de décimales n'est pas nécessaire. Les nombres en
-   entrée n'ayant que 3 chiffres significatifs.
+Si quelqu'un souhaite envoyer un autre message que "SOS", nous devons modifier
+le fichier ``morse.py``.
 
 Programmer c'est l'art de résoudre les problèmes, alors mettons nous au travail !
 Cela va nous donner l'occasion d'apprendre de nouvelles fonctionnalités de Python.
 
-.. _`Indice de Masse Corporelle`: http://fr.wikipedia.org/wiki/Indice_de_masse_corporelle
+Variables
+=========
 
-
-Alias
-=====
-
-Commençons par résoudre notre premier problème. Pour commencer nous
-aimerions bien rendre notre programme plus lisible, pour permettre au
-lecteur de savoir immédiatement quelle valeur correspond à la taille et quelle
-valeur correspond au poids.
+Pour commencer nous aimerions bien rendre notre programme plus lisible, pour
+permettre au lecteur de savoir immédiatement quel code morse correspond à
+quelle lettre (``...`` correspond à "S" et ``---`` correspond à "O").
 
 C'est pourquoi nous donnons des noms à ces valeurs:
 
 .. testcode::
 
-    weight = 65.5
-    height = 1.75
-
-    bmi = weight / height ** 2
-    print("Votre IMC est :", bmi)
+    s = "..."
+    o = "---"
+    print(s + o + s)
 
 Le résultat n'a pas changé:
 
 .. testoutput::
 
-    Votre IMC est : 21.387755102040817
+    ...---...
 
+.. note:: Ici on utilise l'opérateur ``+`` qui sert à concaténer (coller) deux
+    chaines de caractères entre elles. Tapez par exemple dans votre console
+    Python::
 
-Pour mieux comprendre le fonctionnement des alias, revenons à l'invite
-de commande Python et essayons d'en créer quelques-uns :
+        >>> "Bonjour" + " a tous et a toutes"
+        'Bonjour a tous et a toutes'
+
+Pour mieux comprendre le fonctionnement des variables, revenons à l'invité
+de commande (aussi nommée "console") Python et essayons d'en créer
+quelques-unes :
 
     >>> x = 42
     >>> PI = 3.1415
     >>> name = "Amelia"
-    >>> print("Things:", x, PI, name)
-    Things: 42 3.1415 Amelia
+    >>> print("Quelques valeurs:", x, PI, name)
+    Quelques valeurs: 42 3.1415 Amelia
 
-Une valeur peut être liée à plusieurs alias, elle peut donc avoir
-plusieurs noms :
+Une variable peut être vue comme une boite portant une étiquette :
+- Elle contient quelque chose (on dit que la variable contient une ``valeur``)
+- Elle a un nom (comme l'inscription sur l'étiquette de la boite)
+
+Deux variables (ayant des noms différent) peuvent contenir la même valeur :
 
     >>> y = x
     >>> print(x, y)
     42 42
 
-On peut également modifier la valeur d'un alias. La nouvelle valeur
-n'a pas besoin d'être du même type que la précédente:
+Ici les deux variables ont pour noms ``y`` et ``x`` (se sont les étiquettes sur
+les boites) et elles contiennent la même valeur : ``42``
+
+On peut également modifier la valeur d'une variable (changer le contenu de la
+boite). La nouvelle valeur n'a pas besoin d'être du même type
+(nombre entier, nombre décimal, texte ...) que la précédente :
 
     >>> x = 13
     >>> print(x)
@@ -268,75 +283,53 @@ n'a pas besoin d'être du même type que la précédente:
     >>> print(x)
     Scarab
 
-Les alias sont indépendants les uns des autres. Si on modifie la
-valeur de x, la valeur de y reste la même:
+Les variables sont indépendantes les unes des autres. Si on modifie la
+valeur de x, la valeur de y reste la même :
 
     >>> print(y)
     42
 
-.. note:: Pour ceux qui connaissent d'autres langages de programmation
+Nous pouvons également mettre le résultat de calculs ou d'opérations dans des
+variables et utiliser ensuite ces variables comme alias de la valeur dans
+d'autres calculs.
 
-    Vous vous demandez sûrement pourquoi nous n'utilisons pas ici le
-    terme "variable". C'est simplement car en Python, les alias ne
-    fonctionnent pas de la même manière que les variables.
-    Dans la plupart des langages, l'opération ``y = x`` crée une copie
-    de ``x`` et la stocke dans la variable ``y``
+    >>> s = "..."
+    >>> o = "---"
+    >>> aidez_moi = s + o + s
+    >>> print(aidez_moi)
+    ...---...
 
-	En Python, rien n'est copié silencieusement. ``y`` devient
-	seulement un autre moyen de nommer la même valeur. Si on modifie
-	cette valeur, ``x`` et ``y`` seront tous les deux modifié et
-	afficheront la même chose.
+À noter qu'une fois que la valeur est calculée, elle n'est pas modifiée :
 
-	Dans notre exemple, nous n'avons pas modifié la valeur du nombre
-	``42``, mais nous avons modifié la valeur associée à ``x`` (en
-	particulier, les valeurs des nombres ne sont jamais modifiées, bien
-	qu'en 1897, la Chambre basse de l'état d'Indiana ait accepté de
-	modifier la valeur de π à ``3``, décision rejetée par le Sénat).
-	C'est pourquoi, afficher la valeur de ``y`` avec ``print(y)``,
-	nous donne ``42``.
-
-
-Comme nous l'avons vu dans notre programme, nous pouvons également
-donner des noms aux résultats des calculs et utiliser ensuite ces noms
-comme alias de la valeur dans d'autres calculs.
-
-    >>> w = 65.5
-    >>> h = 175.0 / 100.0
-    >>> bmi = w / h ** 2
-    >>> print(w, h, bmi)
-    65.5 1.75 21.387755102040817
-
-À noter qu'une fois que la valeur est calculée, elle n'est pas modifiée:
-
-    >>> w = 64
-    >>> print(w, h, bmi)
-    64 1.75 21.387755102040817
+    >>> s = "@"
+    >>> print(aidez_moi)
+    ...---...
 
 Sauf si on demande à Python de la recalculer :
 
-    >>> bmi = w / h ** 2
-    >>> print(w, h, bmi)
-    64 1.75 20.897959183673468
+    >>> aidez_moi = s + o + s
+    >>> print(aidez_moi)
+    @---@
 
 Il est grand temps d'ajouter quelques commentaires à notre programme
-afin que les lecteurs (dont nous faisons partie) se souviennent que le
-poids est en kg et la taille en m.
+afin de faciliter la compréhension pour les lecteurs-trices (dont nous faisons
+parti).
 
 Les commentaires nous permettent de rajouter du texte dans notre code
-Python.  Les commentaires seront simplement ignorés par l'interpréteur
+Python. Les commentaires seront simplement ignorés par l'interpréteur
 Python lors de l'exécution du code.
 
 En Python, un commentaire est tout ce qui se trouve entre un caractère
 ``#`` et la fin de la ligne::
 
-    # Weight in kilograms
-    weight = 65.5
+    # Code Morse du "S"
+    s = "..."
 
-    # Height in meters
-    height = 1.75
+    # Code Morse du "O"
+    o = "---"
 
-    bmi = weight / height ** 2  # Calculer l'IMC
-    print("Votre IMC est :", bmi)
+    aidez_moi = s + o + s # Code Morse pour "SOS"
+    print(aidez_moi)
 
 
 Les fonctions
