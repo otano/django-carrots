@@ -171,7 +171,7 @@ Nous pouvons maintenant lancer notre application. Démarrez le serveur en tapant
 
    0 errors found
    April 19, 2013 - 20:14:37
-   Django version 1.6.4, using settings 'carrots.settings'
+   Django version 1.8.2, using settings 'carrots.settings'
    Development server is running at http://127.0.0.1:8000/
    Quit the server with CTRL-BREAK.
 
