@@ -99,7 +99,7 @@ rendre compte de ça lui même).
 Afficher les chaînes de caractères
 ----------------------------------
 
-Mais, comment afficher ces chaînes de caractères d'une manière lisible? Il est
+Mais, comment afficher ces chaînes de caractères d'une manière lisible ? Il est
 possible de le faire en utilisant la fonction :func:`print`.
 
 
@@ -114,7 +114,7 @@ espaces:
     Bonjour, mon nom est Pierre
 
 La fonction :func:`print` peut être utilisée de différentes manières,
-puisqu'elle peut écrire à peu près n'importe quoi.  Pour l'instant, le seul
+puisqu'elle peut écrire à peu près n'importe quoi. Pour l'instant, le seul
 type de valeurs que nous connaissons sont les nombres:
 
     >>> print(1)
@@ -336,228 +336,239 @@ En Python, un commentaire est tout ce qui se trouve entre un caractère
 Les fonctions
 =============
 
-Notre programme est pas trop mal, mais si l'utilisateur-trice souhaite
-calculer son IMC, il ou elle aura besoin de modifier le code source du
-programme. Ce serait bien plus simple de lui permettre de saisir ces
-valeurs directement dans la console après le lancement du programme et
-de lui retourner ensuite son IMC.
+Notre programme n'est pas trop mal, mais si l'utilisateur-trice souhaite
+pouvoir envoyer plusieurs SOS, ou bien réutiliser ce bout de programme sans
+dupliquer trop de lignes, il va falloir empaqueter notre fonctionnalité
+dans ce qu'on appelle : une fonction.
 
-Pour ce faire, nous devons apprendre à utiliser les fonctions. La
-première fonction que nous allons apprendre à utiliser est la fonction
-:func:`help`: ::
+Une fonction, c'est un mini moteur, un groupe d'instructions qui prend des
+données en entrée, execute les instructions (calcule) en utilisant (ou pas) les
+données en entrée et renvoie (ou pas) un résultat en sortie.
 
-    >>> help
-    Type help() for interactive help, or help(object) for help about object.
+En Python on définie une fonction comme suit::
 
-La fonction :func:`help` est très sympa car elle nous explique
-comment nous devons l'utiliser. Elle peut aussi nous dire comment
-utiliser d'autres fonctions::
+    def nom_de_la_fonction(argument1, argument2):
+        # les instructions à executer
+        # les instructions peuvent utiliser les arguments
+        # pour retourner un résultat il faut utiliser le mot clef "return"
+        # Si la fonction ne retourne rien, "return" est optionel
+        return 42
 
-    >>> help(input)
-    Help on function input in module builtins:
-    <BLANKLINE>
-    input(...)
-        input([prompt]) -> string
-    <BLANKLINE>
-        Read a string from standard input.  The trailing newline is stripped.
-        If the user hits EOF (Unix: Ctl-D, Windows: Ctl-Z+Return), raise EOFError.
-        On Unix, GNU readline is used if enabled.  The prompt string, if given,
-        is printed without a trailing newline before reading.
-    <BLANKLINE>
 
-Nous utiliserons :func:`input` pour lire les données de
-l'utilisateur. Comme nous pouvons le voir dans la documentation, la
-fonction nous retourne une chaîne de caractères (string).
+Pour executer cette fonction (on dit "appeller" la fonction)::
 
-.. code::
+    nom_de_la_fonction(argument1, argument2)
+
+Pour récupérer la valeur de retour (résultat, sortie) de la fonction dans une
+variable::
+
+    ma_variable = nom_de_la_fonction(argument1, argument2)
+
+Notre première fonction va se contenter d'imprimer notre signal de détresse.
+
+On crée donc la fonction et on l'appelle à la fin du fichier::
+
+	def print_sos():
+		s = "..."
+		o = "---"
+		print(s+o+s)
+
+	print_sos()
+
+.. note:: On remarque qu'ici notre fonction ne prend aucun argument et ne
+    renvoie aucune valeur (pas de mot clef ``return``).
+
+J'ai maintenant une fonction toute simple que je peux appeler à plusieurs
+reprises juste en duplicant l'appelle ``print_sos()``.
+
+On peut aussi vouloir découper le signal et signifier que notre mot est terminé
+On va donc ajouter une nouvelle variable "stop" pour découper le mot et ainsi
+savoir quand le mot est terminé::
+
+    def print_sos():
+        s = "..."
+        o = "---"
+        stop = "|"
+        print (s+o+s+stop)
+
+    print_sos()
+
+On peut encore simplifier notre code en remarquant que ``s`` contient 3 points
+et ``o`` contient 3 tirets. Il se trouve qu'on peut dupliquer une chaine de
+caractères en utilisant la syntaxe suivante::
+
+    >>> "hello"*2
+    'hellohello'
+
+On peut donc obtenir ``"..."`` en faisant ``"." * 3``::
+
+    def print_sos():
+        s = "." * 3
+        o = "-" * 3
+        stop = "|"
+        print(s+o+s+stop)
+
+    print_sos()
+
+Si maintenant on veut afficher plusieurs SOS, on peut écrire autant de fois
+que nécessaire ``print_sos()`` à la fin du fichier. Mais les informaticien•ne•s
+sont flemmard•e•s et la machine est là pour nous éviter de refaire la même
+chose et faire le travail répétitif et ennuyeux.
+
+On a besoin de dire à la machine combien de fois on veut imprimer notre SOS.
+On va donc modifier la fonction et lui passer le nombre de fois que l'on veut
+imprimer le signal SOS en argument::
+
+    def print_sos(nb):
+        s = "." * 3
+        o = "-" * 3
+        stop = "|"
+        print((s+o+s+stop) * nb)
+
+    print_sos(3)
+
+Ce qui donne::
+
+    $ python morse.py
+    ...---...|...---...|...---...|
+
+Pour qu'on puisse mieux lire les différents SOS et visualiser la fin de la
+phrase on va lui ajouter un retour à la ligne (``\n``)::
+
+    def print_sos(nb):
+        s = "." * 3
+        o = "-" * 3
+        stop = "|"
+        print((s+o+s+stop+"\n") * nb)
+
+    print_sos(3)
+
+Ce qui donne lorsqu'on execute ``morse.py``::
+
+    $ python3.4 morse.py
+    ...---...|
+    ...---...|
+    ...---...|
+
+On a donc une fonction qui prend en entrée le nombre de fois que l'on veut
+emettre le signal SOS. Pour l'instant elle ne se contente que d'afficher.
+Si on veut rendre ce programme encore plus facile à utiliser, imaginons par
+exemple que nous ayons un robot qui transforme le . et le - en sons différents,
+ou une machine qui allume et éteigne une lampe plus ou moins longtemps.
+On peut vouloir que cette fonction retourne la chaine de caractère du message
+à transmettre sans l'afficher dans le terminal. On pourra ensuite mettre cette
+chaine dans une variable et la passer en argument à une autre fonction dont
+le rôle sera d'émettre du son ou d'allumer une lampe.
+On va donc demander à la fonction de retourner (via ``return``) le message
+morse et donc on va changer le nom de la fonction de ``print_sos`` à
+``emit_sos``::
+
+    def emit_sos(nb):
+        s = "." * 3
+        o = "-" * 3
+        stop = "|"
+        return (s+o+s+stop) * nb
+
+    emit_sos(5)
+
+Cette fois-ci lorsqu'on execute notre programme, plus rien n'est affiché.
+
+Mais rassurez-vous, on peut toujours vérifier que celà marche en modifiant la
+dernière ligne en::
+
+    print(emit_sos(5))
+
+En effet, :func:`emit_sos` retourne une chaine de caractère que :func:`print` va
+afficher.
+
+Un peu d'interactivité avec l'utilisateur•trice serait le bienvenu, par exemple
+demander à l'utilisateur•trice de rentrer au clavier le nombre de fois qu'il
+faut afficher le SOS.
+
+Nous allons utiliser la fonction :func:`input` (fonctionne seulement avec
+Python 3, si vous utilisez Python 2 remplacez :func:`input` par
+:func:`raw_input`) pour ça.
+
+La fonction :func:`input` laisse l'utilisateur•trice taper un message (terminé
+par l'appuie sur la touche Entrée) puis retourne la chaine de caractère
+qui a été tapée::
 
     >>> input()
-    Yara a un chat
-    'Yara a un chat'
+    Bonjour a toutes et a tous
+    'Bonjour a toutes et a tous'
 
-Apprenons maintenant ce qu'"appeler une fonction" veut dire.
+Le résultat peut bien sûr être stoqué dans une variable afin de l'utiliser par
+la suite::
 
-Pour appeler une fonction, il faut utiliser ``()``, ce qui donne
-l'information à l'interpréteur Python qu'il doit appeler une fonction.
+    >>> message = input()
+    Ceci est un test
+    >>> print("Vous avez tape : " + message)
+    Vous avez tape : Ceci est un test
 
-Appeler une fonction c'est lancer le code de cette fonction. Si vous
-oubliez d'ajouter ``()`` après le nom de la fonction, la fonction ne
-sera pas appelée.
+Essayons maintenant de l'intégrer à notre machine à SOS::
 
-Dans cette situation, il n'y aura pas d'erreur car il est tout-à-fait
-possible de manipuler une fonction sans l'appeler.
+    def emit_sos(nb):
+        s = "." * 3
+        o = "-" * 3
+        stop = "|"
+        return (s+o+s+stop) * nb
 
-La plupart du temps une fonction **return** un résultat.
+    print("Entrez le nombre de SOS que vous voulez: ")
+    nb_sos = input()
+    print(emit_sos(nb_sos))
 
-Dans le cas de la :func:`input`, ce résultat est une chaîne de
-caractères, c'est pourquoi nous pouvons le manipuler de la même
-manière que nous avons manipulé les chaînes de caractères auparavant.
+Voici ce que le programme donne une fois executé::
 
-Par exemple nous pouvons donner un alias au résultat de la fonction
-``input()`` pour pouvoir réutiliser cette valeur par la suite:
-
-.. testsetup::
-
-    input.queue.append("Joanna")
-
-.. doctest::
-
-    >>> name = input()
-    Joanna
-    >>> name
-    'Joanna'
-    >>> print("Votre nom est :", name)
-    Votre nom est : Joanna
-
-Est-ce que ça suffit pour améliorer notre programme ?
-
-.. testsetup::
-
-    input.queue.append("60.5")
-
-.. doctest::
-
-    >>> w = input()
-    60.5
-    >>> w
-    '60.5'
-    >>> print(w + 3)
+    $ python morse.py
+    Entrez le nombre de SOS que vous voulez:
+    5
     Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    TypeError: Can't convert 'int' object to str implicitly
+      File "morse.py", line 9, in <module>
+        print(emit_sos(nb_sos))
+      File "morse.py", line 5, in emit_sos
+        return (s+o+s+stop) * nb
+    TypeError: can't multiply sequence by non-int of type 'str'
 
-Comme vous pouvez le voir, Python ne sait pas quel résultat nous
-souhaitons.  Il n'est pas possible d'additionner des chaînes de
-type (``str``) et des entiers de type (``int``). Python ne sait pas si
-nous parlons du nombre ``63.5`` ou de la chaîne de caractères
-``"60.5"``. Nous sommes les seuls à le savoir et nous devons donc
-ajouter ces informations à notre programme.
+Ceci est une erreur Python (on dit une exception).
+L'erreur vient du fait que la fonction :func:`input` retourne une chaine de
+caractères et non pas un nombre entier.
+En Python, ``"5"`` est différent de ``5``, le premier est une chaine de
+caractère et le deuxième est un entier::
 
+    >>> type("5")
+    <class 'str'>
+    >>> type(5)
+    <class 'int'>
 
-Voici deux nouvelles fonctions :
+.. note:: La fonction :func:`type` permet d'afficher le type d'une expression.
 
-    >>> help(int)  # doctest: +NORMALIZE_WHITESPACE
-    Help on class int in module builtins:
-    <BLANKLINE>
-    class int(object)
-     |  int(x=0) -> integer
-     |  int(x, base=10) -> integer
-     |
-     |  Convert a number or string to an integer, or return 0 if no arguments
-     |  are given.  If x is a number, return x.__int__().  For floating point
-     |  numbers, this truncates towards zero.
-     |
-     |  ...
+Pour convertir notre chaine de caractères en entier, nous allons utiliser la
+fonction :func:`int`::
 
-et
+    >>> a = "5"
+    >>> a
+    '5'
+    >>> int(a)
+    5
 
-    >>> help(float)  # doctest: +NORMALIZE_WHITESPACE
-    Help on class float in module builtins:
-    <BLANKLINE>
-    class float(object)
-     |  float(x) -> floating point number
-     |
-     |  Convert a string or number to a floating point number, if possible.
-     |
-     |  ...
+Voici le code corrigé::
 
-La fonction :func:`help` n'hésite pas à nous annoncer qu'en fait,
-:func:`int` and :func:`float` ne sont pas des fonctions, mais des
-classes (mais nous reviendrons là dessus dans la suite du tutoriel)
-ainsi que toutes les informations sur les nombreuses choses pour
-lesquelles nous pouvons les utiliser. Actuellement ce qui nous
-intéresse est simplement la fonctionnalité de base permettant de
-convertir une chaîne de caractères contenant un nombre sous la forme
-d'un nombre d'un type donné.
+    def emit_sos(nb):
+        s = "." * 3
+        o = "-" * 3
+        stop = "|"
+        return (s+o+s+stop) * nb
 
-Essayons :func:`int` et :func:`float`:
+    print("Entrez le nombre de SOS que vous voulez: ")
+    nb_sos = int(input())
+    print(emit_sos(nb_sos))
 
-    >>> int("0")
-    0
-    >>> int(" 63 ")
-    63
-    >>> int("60.5")
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    ValueError: invalid literal for int() with base 10: '60.5'
-    >>> float("0")
-    0.0
-    >>> float(" 63 ")
-    63.0
-    >>> float("60.5")
-    60.5
+Une fois lancé::
 
-
-Avant d'utiliser ces nouvelles fonctions dans notre programme, prenons
-le temps de décrire comme il devrait fonctionner:
-
-1. Demander à l'utilisateur d'entrer sa taille.
-2. Lire la valeur de l'utilisateur et la stocker dans l'alias ``height``.
-3. Convertir la valeur sous forme de chaîne de caractères en valeur décimale.
-4. Demander à l'utilisateur d'entrer son poids.
-5. Lire la valeur de l'utilisateur et la stocker dans l'alias ``weight``.
-6. Convertir la valeur sous forme de chaîne de caractères en valeur décimale.
-7. En utilisant ces valeurs calculer l'IMC et stocker sa valeur dans l'alias ``bmi``.
-8. Afficher la valeur de l'IMC.
-
-Sans surprise, ces 8 points peuvent être transcrits en 8 lignes de code
-(lignes vides exclues):
-
-.. testsetup::
-
-    input.queue.append("1.75")
-    input.queue.append("65.5")
-
-.. testcode::
-
-    print("Entrez votre taille en mètres :")
-    height = input()
-    height = float(height)
-
-    print("Entrez votre poids en kilogrammes :")
-    weight = input()
-    weight = float(weight)
-
-    bmi = weight / height ** 2  # Calculer IMC
-    print("Votre IMC est :", bmi)
-
-Vous pouvez sauvegarder votre programme dans le fichier ``bmi.py`` et lancer ``python bmi.py``.
-Le résultat devrait ressembler à:
-
-.. testoutput::
-
-    Entrez votre taille en mètres :
-    1.75
-    Entrez votre poids en kilogrammes :
-    65.5
-    Votre IMC est : 21.387755102040817
-
-En conclusion, pour appeler une fonction, nous avons besoin de
-connaître son nom (nous en connaissons maintenant quelques-unes :
-:func:`print`, :func:`help`, :func:`input`, :func:`int`, :func:`float`
-and :func:`quit`) et ce qu'elles attendent de nous (ce qui s'appelle
-la liste des arguments de la fonction).
-
-Entrer uniquement le nom de la fonction ne l'appelle pas. Mais ça va
-nous retourner qu'il s'agit bien d'une fonction.
-
-    >>> input  # doctest: +SKIP
-    <built-in function input>
-
-.. We skip the test above because we can't mock input.__repr__ :(
-
-Afin d'appeler une fonction, nous devons ajouter des parenthèses après son nom:
-
-    >>> input()  # doctest: +SKIP
-
-Ainsi la fonction sera exécutée par Python.
-
-Les arguments de la fonction sont donnés entre les parenthèses et s'il
-y en a plus d'un on les sépare par une virgule:
-
-    >>> int("FF", 16)
-    255
-
+    $ python morse.py
+    Entrez le nombre de SOS que vous voulez:
+    5
+    ...---...|...---...|...---...|...---...|...---...|
 
 Les conditions
 ==============
