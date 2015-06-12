@@ -818,6 +818,57 @@ condition::
     else:
         # Les trolls ne savent compter que jusqu'à trois
         print("more")
+Tuples
+======
+Nous savons déjà que nous pouvons concaténer des chaînes de
+caractères, les multiplier par des nombres, vous allez voir qu'on peut
+aussi les formater. Tout d'abord, nous avons besoin de découvrir un nouveau type de données (en plus des ``strings`` et des nombres, ``int`` et ``float``, que nous connaissons déjà).
+
+
+Rappelez-vous, je vous disais que nous ne pouvions pas utiliser les virgules dans les nombres car nous en aurions besoin par la suite pour définir les tuples. Nous y voici :
+
+.. _imc-tuples:
+
+    >>> 1, 2, 3
+    (1, 2, 3)
+    >>> ("Ala", 15)
+    ('Ala', 15)
+    >>> x = 1,5
+    >>> print(x)
+    (1, 5)
+
+Un tuple n'est ni plus ni moins qu'une valeur contenant un groupe de
+valeurs. Les valeurs que nous souhaitons grouper doivent être séparées
+par des virgules. L'ensemble peut-être entouré de parenthèses pour
+rendre plus explicite le fait qu'il s'agisse bien d'un groupe, mais ce
+n'est pas obligatoire. Sauf pour le cas d'un groupe vide (aussi
+bizarre que cela puisse paraître).
+
+    >>> ()
+    ()
+
+Il est possible de combiner des tuples:
+
+    >>> names = ("Pauline", "Dupontel")
+    >>> details = (27, 1.70)
+    >>> names + details
+    ('Pauline', 'Dupontel', 27, 1.7)
+
+Un tuple peut aussi contenir un autre tuple, par exemple un point sur
+une carte peut-être groupé comme ceci:
+
+    >>> point = ("Pizzeria", (long, lat))
+
+Avec ``long`` et ``lat`` des coordonnées géographiques.
+
+On peut ensuite se référer aux valeurs d'un groupe en utilisant leurs
+positions (en commençant à zéro):
+
+    >>> p = (10, 15)
+    >>> p[0]  # première valeur
+    10
+    >>> p[1]  # deuxième valeur
+    15
 
 
 En résumé
