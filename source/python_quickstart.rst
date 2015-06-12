@@ -84,7 +84,7 @@ Vous pouvez également ajouter (on dit également concaténer) deux chaînes l'u
 Ou elles peuvent être aussi multipliés par des nombres:
 
     >>> 'oui ' * 3
-    'oui oui oui'
+    'oui oui oui '
 
 Une chaîne de caractères doit toujours commencer et se terminer par le même
 caractère. Il peut s'agir d'un guillemet simple (``'``), ou d'un guillemet
