@@ -50,7 +50,7 @@ Python est une super calculatrice:
 
 Faites bien attention lorsque vous entrez des nombres à virgules, utilisez des
 points comme séparateurs, et non pas des virgules. Les virgules nous seront
-utiles plus tard, pour définir des :ref:`tuple <imc-tuples>`, mais nous
+utiles plus tard, pour définir des :ref:`tuple <lien-tuples>`, mais nous
 y reviendrons.
 
 
@@ -368,12 +368,12 @@ Notre première fonction va se contenter d'imprimer notre signal de détresse.
 
 On crée donc la fonction et on l'appelle à la fin du fichier::
 
-	def print_sos():
-		s = "..."
-		o = "---"
-		print(s+o+s)
+    def print_sos():
+        s = "..."
+        o = "---"
+        print(s+o+s)
 
-	print_sos()
+    print_sos()
 
 .. note:: On remarque qu'ici notre fonction ne prend aucun argument et ne
     renvoie aucune valeur (pas de mot clef ``return``).
@@ -484,11 +484,11 @@ afficher.
 On a donc créé une fonction réutilisable, et que l'on peut greffer à d'autre
 comme par exemple emettre un son ::
 
-	play(emit_sos(5))
-	
+    play(emit_sos(5))
+
 ou encore allumer et éteindre un phare ::
-	
-	flash(emit_sos(5))
+
+    flash(emit_sos(5))
 
 Mais avant de gérer les phares et cassez les oreilles des autres, 
 nous allons plutôt interagir avec notre machine à sos et nous familiariser avec elle.
@@ -594,7 +594,7 @@ ou faire sauter l'élecricité ou encore simplement rendre fou le capitaine.
 On va donc prévenir le lanceur de SOS s'il dépasse la limite autorisée.
 On va modifier notre fichier morse.py pour ajouter des précautions d'usage::
 
-	def emit_sos(nb):
+    def emit_sos(nb):
         s = "." * 3
         o = "-" * 3
         stop = "|"
@@ -603,30 +603,30 @@ On va modifier notre fichier morse.py pour ajouter des précautions d'usage::
     print("Entrez le nombre de SOS que vous voulez: ")
     
     nb_sos = int(input())
-	#Et maintenant nous allons vérifier que l'utilisateur n'abuse pas en nombre de sos
-	#si alors
-	if nb_sos == 0:
-		print("Pas SOS pour toi donc.")
-	#ou si alors
-	elif nb_sos > 10:
-		print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
-	# sinon alors
-	else:
-		print(emit_sos(nb_sos))
+    #Et maintenant nous allons vérifier que l'utilisateur n'abuse pas en nombre de sos
+    #si alors
+    if nb_sos == 0:
+        print("Pas SOS pour toi donc.")
+    #ou si alors
+    elif nb_sos > 10:
+        print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
+    # sinon alors
+    else:
+        print(emit_sos(nb_sos))
 
 Maintenant l'utilisateur a peut être VRAIMENT un problème, il faut quand même envoyer un signal.
 On va donc quand même envoyer le signal mais en respectant la limite::
-	
-	#si alors
-	if nb_sos == 0:
-		print("Pas SOS pour toi donc.")
-	#ou si alors
-	elif nb_sos > 10:
-		print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
-		print(emit(10))
-	# sinon alors
-	else:
-		print(emit_sos(nb_sos))
+
+    #si alors
+    if nb_sos == 0:
+        print("Pas SOS pour toi donc.")
+    #ou si alors
+    elif nb_sos > 10:
+        print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
+        print(emit(10))
+    # sinon alors
+    else:
+        print(emit_sos(nb_sos))
 
 L'utilisateur de la machine à SOS maintenant qu'il est prevenu peu informer de l'urgence de sa situtation 
 en fonction du nombre de SOS qu'il envoie:
@@ -634,14 +634,14 @@ en fonction du nombre de SOS qu'il envoie:
 =====================   ==================    ==================
    Nombre de SOS           Type de Signal		Signification
 =====================   ==================    ==================
- < 5                       Avarie mineure 	on rentre au port rapidemment
- 5 – 12              	Avarie moyenne 	patrouille de reconnaissance demandée
- ≥ 12                     Avarie majeure 	 envoi immédiat des forces d'interventions
-=====================   ==================
+ < 5                    Avarie mineure 	      on rentre au port rapidemment
+ 5 – 12              	Avarie moyenne 	      patrouille de reconnaissance demandée
+ ≥ 12                   Avarie majeure 	      envoi immédiat des forces d'interventions
+=====================   ==================    ==================
 
 Exercice : Ecrire une fonction qui va afficher le type de signal en fonction du nombre de SOS envoyé
 (n'oubliez pas de prendre en compte s'il n'y a pas de signal)
-	
+
 
 Conditions : vrai ou faux
 -------------------------
@@ -818,6 +818,10 @@ condition::
     else:
         # Les trolls ne savent compter que jusqu'à trois
         print("more")
+
+
+.. _lien-tuples:
+
 Tuples
 ======
 Nous savons déjà que nous pouvons concaténer des chaînes de
@@ -825,9 +829,7 @@ caractères, les multiplier par des nombres, vous allez voir qu'on peut
 aussi les formater. Tout d'abord, nous avons besoin de découvrir un nouveau type de données (en plus des ``strings`` et des nombres, ``int`` et ``float``, que nous connaissons déjà).
 
 
-Rappelez-vous, je vous disais que nous ne pouvions pas utiliser les virgules dans les nombres car nous en aurions besoin par la suite pour définir les tuples. Nous y voici :
-
-.. _imc-tuples:
+Rappelez-vous, je vous disais que nous ne pouvions pas utiliser les virgules dans les nombres car nous en aurions besoin par la suite pour définir les tuples. Nous y voici
 
     >>> 1, 2, 3
     (1, 2, 3)
