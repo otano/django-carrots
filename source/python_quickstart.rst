@@ -481,6 +481,18 @@ dernière ligne en::
 En effet, :func:`emit_sos` retourne une chaine de caractère que :func:`print` va
 afficher.
 
+On a donc créé une fonction réutilisable, et que l'on peut greffer à d'autre
+comme par exemple emettre un son ::
+
+	play(emit_sos(5))
+	
+ou encore allumer et éteindre un phare ::
+	
+	flash(emit_sos(5))
+
+Mais avant de gérer les phares et cassez les oreilles des autres, 
+nous allons plutôt interagir avec notre machine à sos et nous familiariser avec elle.
+
 Un peu d'interactivité avec l'utilisateur•trice serait le bienvenu, par exemple
 demander à l'utilisateur•trice de rentrer au clavier le nombre de fois qu'il
 faut afficher le SOS.
@@ -569,58 +581,67 @@ Une fois lancé::
     Entrez le nombre de SOS que vous voulez:
     5
     ...---...|...---...|...---...|...---...|...---...|
+    
+
 
 Les conditions
 ==============
+En avant vers notre prochaine problématique. 
+Maintenant on a une machine à émettre des sos autant de fois qu'on le désire.
+Mais il faut faire attention, trop de sos pour faire imploser le bateau 
+ou faire sauter l'élecricité ou encore simplement rendre fou le capitaine.
 
-En avant vers notre prochaine problématique. Nous voulons que notre programme affiche les informations relatives à notre IMC une fois ce dernier calculé.
+On va donc prévenir le lanceur de SOS s'il dépasse la limite autorisée.
+On va modifier notre fichier morse.py pour ajouter des précautions d'usage::
 
-Pour ce faire nous allons utiliser la table de classification ci-dessous:
+	def emit_sos(nb):
+        s = "." * 3
+        o = "-" * 3
+        stop = "|"
+        return (s+o+s+stop) * nb
 
+    print("Entrez le nombre de SOS que vous voulez: ")
+    
+    nb_sos = int(input())
+	#Et maintenant nous allons vérifier que l'utilisateur n'abuse pas en nombre de sos
+	#si alors
+	if nb_sos == 0:
+		print("Pas SOS pour toi donc.")
+	#ou si alors
+	elif nb_sos > 10:
+		print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
+	# sinon alors
+	else:
+		print(emit_sos(nb_sos))
+
+Maintenant l'utilisateur a peut être VRAIMENT un problème, il faut quand même envoyer un signal.
+On va donc quand même envoyer le signal mais en respectant la limite::
+	
+	#si alors
+	if nb_sos == 0:
+		print("Pas SOS pour toi donc.")
+	#ou si alors
+	elif nb_sos > 10:
+		print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
+		print(emit(10))
+	# sinon alors
+	else:
+		print(emit_sos(nb_sos))
+
+L'utilisateur de la machine à SOS maintenant qu'il est prevenu peu informer de l'urgence de sa situtation 
+en fonction du nombre de SOS qu'il envoie:
+
+=====================   ==================    ==================
+   Nombre de SOS           Type de Signal		Signification
+=====================   ==================    ==================
+ < 5                       Avarie mineure 	on rentre au port rapidemment
+ 5 – 12              	Avarie moyenne 	patrouille de reconnaissance demandée
+ ≥ 12                     Avarie majeure 	 envoi immédiat des forces d'interventions
 =====================   ==================
-   IMC                    Classification
-=====================   ==================
- < 18,5                      Maigreur
- 18,5 – 25              Corpulence normale
- ≥ 25,0                      Surpoids
-=====================   ==================
 
-Nous allons utiliser le mot clé de condition :keyword:`if`. Il va nous
-permettre de choisir les lignes du programme à exécuter en fonction
-d'une condition donnée:
-
-
-.. testsetup::
-
-    input.queue.append("1.75")
-    input.queue.append("65.5")
-
-.. testcode::
-
-    print("Entrez votre taille en mètres ::")
-    height = input()
-    height = float(height)
-
-    print("Entrez votre poids en kilogrammes :")
-    weight = input()
-    weight = float(weight)
-
-    bmi = weight / height ** 2  # Calculer l'IMC
-
-    if bmi < 18.5:
-        print("Maigreur")
-    elif bmi < 25.0:
-        print("Corpulence normale")
-    else:
-        print("Surpoids")
-
-.. testoutput::
-
-    Entrez votre taille en mètres ::
-    1.75
-    Entrez votre poids en kilogrammes :
-    65.5
-    Corpulence normale
+Exercice : Ecrire une fonction qui va afficher le type de signal en fonction du nombre de SOS envoyé
+(n'oubliez pas de prendre en compte s'il n'y a pas de signal)
+	
 
 Conditions : vrai ou faux
 -------------------------
@@ -744,13 +765,13 @@ Et si ce n'est pas le cas ?
 On pourrait se débrouiller pour écrire un programme en utilisant
 uniquement des :keyword:`if` ::
 
-    if bmi < 18.5:
-        print("Maigreur")
-    if bmi >= 18.5:
-        if bmi < 25.0:
-            print("Corpulence normale")
-    if bmi >= 25.0:
-        print("Surpoids")
+    if nb_sos <= 5:
+        print("Avarie Mineure")
+    if nb_sos > 5:
+        if nb_sos < 12:
+            print("Avarie Moyenne")
+    if nb_sos >= 12:
+        print("Avarie Majeure")
 
 Mais en fait, on peut aussi utiliser :keyword:`else` et
 :keyword:`elif`, afin de ne pas avoir à répéter les conditions
@@ -762,17 +783,17 @@ En utilisant :keyword:`else` , nous avons la garantie que les
 instructions données seront exécutées seulement si les instructions
 données après le :keyword:`if` n'ont pas été exécutées::
 
-    if bmi < 18.5:
-        print("Maigreur")
+    if nb_sos < 5:
+        print("Avarie Mineure")
     else:
         # Si votre programme exécute ces instructions alors vous êtes
-        # certains que bmi >= 18.5 !
-        if bmi < 25.0:
-            print("Corpulence normale")
+        # certains que nb_sos >= 5 !
+        if nb_sos < 12:
+            print("Avarie Moyenne")
         else:
-            # Ici vous pouvez être certains que bmi >= 25.0
+            # Ici vous pouvez être certains que nb_sos >= 25.0
             # nous n'avons donc pas à le vérifier.
-            print("Surpoids")
+            print("Avarie Majeure")
 
 Regardez bien attentivement la manière dont le code est indenté. À
 chaque utilisation de :keyword:`else`, un niveau d'indentation a été
@@ -797,193 +818,6 @@ condition::
     else:
         # Les trolls ne savent compter que jusqu'à trois
         print("more")
-
-
-Le formatage des chaînes de caractères
-======================================
-
-La dernière ammélioration, que nous avions mentionnée ci-dessus, était
-le trop grand nombre de chiffres après la virgule de notre IMC.
-
-Des trois problèmes que nous avions identifiés, celui-ci est le plus
-simple à résoudre.
-
-C'est d'ailleurs pour ça que nous l'avions gardé pour la fin de notre
-aventure de calculateur d'IMC.
-
-Nous savons déjà que nous pouvons concaténer des chaînes de
-caractères, les multiplier par des nombres, vous allez voir qu'on peut
-aussi les formater. Tout d'abord, nous avons besoin de découvrir un nouveau type de données (en plus des ``strings`` et des nombres, ``int`` et ``float``, que nous connaissons déjà).
-
-
-.. _imc-tuples:
-
-Tuples
-------
-
-Rappelez-vous, je vous disais que nous ne pouvions pas utiliser les virgules dans les nombres car nous en aurions besoin par la suite pour définir les tuples. Nous y voici :
-
-    >>> 1, 2, 3
-    (1, 2, 3)
-    >>> ("Ala", 15)
-    ('Ala', 15)
-    >>> x = 1,5
-    >>> print(x)
-    (1, 5)
-
-Un tuple n'est ni plus ni moins qu'une valeur contenant un groupe de
-valeurs. Les valeurs que nous souhaitons grouper doivent être séparées
-par des virgules. L'ensemble peut-être entouré de parenthèses pour
-rendre plus explicite le fait qu'il s'agisse bien d'un groupe, mais ce
-n'est pas obligatoire. Sauf pour le cas d'un groupe vide (aussi
-bizarre que cela puisse paraître).
-
-    >>> ()
-    ()
-
-Il est possible de combiner des tuples:
-
-    >>> names = ("Pauline", "Dupontel")
-    >>> details = (27, 1.70)
-    >>> names + details
-    ('Pauline', 'Dupontel', 27, 1.7)
-
-Un tuple peut aussi contenir un autre tuple, par exemple un point sur
-une carte peut-être groupé comme ceci:
-
-    >>> point = ("Pizzeria", (long, lat))
-
-Avec ``long`` et ``lat`` des coordonnées géographiques.
-
-On peut ensuite se référer aux valeurs d'un groupe en utilisant leurs
-positions (en commençant à zéro):
-
-    >>> p = (10, 15)
-    >>> p[0]  # première valeur
-    10
-    >>> p[1]  # deuxième valeur
-    15
-
-
-Formater
---------
-
-Pour en revenir à notre programme, actuellement le résultat est affiché sur une seule ligne.
-
-À présent, nous souhaitons afficher notre IMC comme un nombre ainsi
-que l'information de la table de classification correspondant à la
-tranche en question, comme cela : 
-
-::
-
-    Votre IMC est de 21.39 (Corpulence normale)
-
-Modifiez votre programme actuel pour que la valeur de l'IMC soit disponible dans l'alias ``bmi`` et l'information de la table de classification correspondante dans l'alias ``category``. Ensuite utilisez la fonction :func:`print` pour obtenir le résultat souhaité:
-
-.. testsetup::
-
-    bmi = 21.387755102040817
-    category = "normal weight"
-
-.. testcode::
-
-    print("Votre IMC est de", bmi, "(" + category + ")")
-
-.. testoutput::
-    :hide:
-
-    Votre IMC est de 21.387755102040817 (Corpulence Normale)
-
-Vous y êtes presque…. Nous avons encore un peu trop de chiffres après
-la virgule. Nous aurions également un problème si nous souhaitions
-stocker la chaîne de caractères contenant le résultat dans un alias et
-ce parce que nous utilisons la fonction :func:`print` pour
-concaténer les éléments.
-
-Heureusement pour nous, il y a une meilleure solution :
-
-    >>> bmi = 21.387755102040817
-    >>> category = "Corpulence normale"
-    >>> result = "Votre IMC est de %f (%s)" % (bmi, category)
-    >>> result
-    'Votre IMC est de 21.387755 (Corpulence normale)'
-    >>> print(result)
-    Votre IMC est de 21.387755 (Corpulence normale)
-
-Ce que nous voyons, c'est que nous avons une chaîne de caractères liée à un tuple par un ``%``.
-Cette chaîne de caractères est un patron qui est complété avec les valeurs contenues dans le tuple.
-
-Les espaces blancs à remplir, sont eux aussi annotés avec un pourcent (``%``).
-
-La lettre qui suit définit le type de la valeur qui doit être
-insérée. Les entiers sont représentés par la lettre ``i`` pour
-**integer** (il est également possible d'utiliser la lettre ``d``
-comme **decimal**), les chaînes de caractères sont représentées par la
-lettre ``s`` comme **string** et les valeurs décimales flottantes sont
-représentées par la lettre ``f`` comme **float**:
-
-    >>> "String: %s, Numbers: %d %f" % ("Ala", 10, 3.1415)
-    'String: Ala, Numbers: 10 3.141500'
-
-Ici au lieu de neuf décimales nous n'en avons plus que six, mais le
-formatage a l'avantage de nous permettre d'avoir encore plus de
-contrôle en ajoutant des informations complémentaires entre le ``%``
-et le ``f`` ; par exemple pour ne faire apparaître que deux chiffres :
-
-
-    >>> "%.2f" % 3.1415
-    '3.14'
-    >>> "%.2f" % 21.387755102040817
-    '21.39'
-
-Il existe beaucoup d'options de formatage, nous n'allons donc pas toutes
-les lister ici. L'une des plus utiles est celle permettant d'aligner
-l'affichage sur un nombre de caractères donné :
-
-.. testcode::
-
-    WIDTH = 28
-
-    print("-" * WIDTH)
-    print("| Name and last name |  Weight  |")
-    print("-" * WIDTH)
-    print("| %15s | %6.2f |" % ("Lucas", 67.5))
-    print("| %15s | %6.2f |" % ("Pierre", 123))
-    print("-" * WIDTH)
-
-.. testoutput::
-
-    --------------------------------
-    | Name and last name  |  Weight|
-    --------------------------------
-    |               Lucas |  67.50 |
-    |              Pierre | 123.00 |
-    --------------------------------
-
-Nous pouvons aussi aligner les chaînes de caractères à gauche en
-prefixant le nombre de caractères par un ``-`` :
-
-.. testcode::
-
-    WIDTH = 28
-
-    print("-" * WIDTH)
-    print("| Name and last name |  Weight |")
-    print("-" * WIDTH)
-    print("| %-15s | %6.2f |" % ("Lucas", 67.5))
-    print("| %-15s | %6.2f |" % ("Pierre", 123))
-    print("-" * WIDTH)
-
-.. testoutput::
-
-    -------------------------------
-    | Name and last name|  Weight |
-    -------------------------------
-    | Lucas             |  67.50  |
-    | Pierre            | 123.00  |
-    -------------------------------
-
-Je vous laisse chercher comment faire pour aligner au centre :).
 
 
 En résumé
