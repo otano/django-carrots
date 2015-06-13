@@ -116,6 +116,7 @@ Le moment est maintenant venu d'utiliser le fichier ``manage.py`` pour créer la
 .. code-block:: sh
 
     (workshops) ~$ cd carrots
+
     (workshops) ~/carrots$ python manage.py migrate
     Operations to perform:
       Synchronize unmigrated apps: staticfiles, messages
@@ -136,6 +137,9 @@ Le moment est maintenant venu d'utiliser le fichier ``manage.py`` pour créer la
       Applying auth.0005_alter_user_last_login_null... OK
       Applying auth.0006_require_contenttypes_0002... OK
       Applying sessions.0001_initial... OK
+
+.. code-block:: sh
+
     (workshops) ~/carrots$ python manage.py createsuperuser
     Username (leave blank to use 'br'): admin
     Email address: admin@admin.com
