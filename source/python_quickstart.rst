@@ -623,7 +623,7 @@ On va donc quand même envoyer le signal mais en respectant la limite::
     #ou si alors
     elif nb_sos > 10:
         print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
-        print(emit(10))
+        print(emit_sos(10))
     # sinon alors
     else:
         print(emit_sos(nb_sos))
