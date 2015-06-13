@@ -386,12 +386,6 @@ obtenir un comportement similaire, il faut utiliser l'instruction
 :keyword:`return`. C'est une instruction spécifique qui ne fonctionne
 qu'au sein d'une fonction.
 
-On peut améliorer notre calculateur d'IMC en ajoutant une fonction
-permettant le calcul de l'IMC::
-
-    def compute_bmi(height, weight):
-        return weight / height ** 2
-
 Pour finir, comme dernier exemple de fonction, voici la solution au
 problème posé à la fin du chapitre précédent :
 
