@@ -103,9 +103,11 @@ Pour simplifier les choses nous allons désactiver la gestion avancée des fusea
 
    USE_TZ = False
 
-La section ``INSTALLED_APPS`` contient des informations sur les applications installées. Un projet Django est en effet conposé de plusieurs applications, comme ici l'application ``auth`` qui sert à authentifier les utilisateurs, l'application ``sessions`` qui permet de gérer les sessions des utilisateurs, et ainsi de suite.
+La section ``INSTALLED_APPS`` contient des informations sur les applications installées. Un projet Django est en effet composé de plusieurs applications, comme ici l'application ``auth`` qui sert à authentifier les utilisateurs, l'application ``sessions`` qui permet de gérer les sessions des utilisateurs, et ainsi de suite.
 
-Comme vous pouvez le voir, ``INSTALLED_APPS`` est tout simplement un tuple de noms d'applications. En décommentant les deux dernières chaînes de caractères (c'est-à-dire en supprimant le caractère ``#`` en début de ligne), vous pouvez activer l'interface d'administration fournie par Django. Nous allons voir plus tard comment l'utiliser.
+Comme vous pouvez le voir, ``INSTALLED_APPS`` est tout simplement un tuple de noms d'applications. 
+Vous pouvez vérifier que l'interface d'administration fournie par Django est bien dans la liste.
+Nous allons voir plus tard comment l'utiliser.
 
 
 Base de données
