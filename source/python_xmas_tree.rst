@@ -294,7 +294,7 @@ Nous avons déjà pu voir comment les fonctions résolvent nombre de nos
 problèmes. Par contre elle ne les résolvent pas tous - ou du moins pas
 exactement de la manière dont nous aimerions les résoudre.
 
-Parfois, et même assez souventn nous devons résoudre nous-mêmes un problème.
+Parfois, et même assez souvent nous devons résoudre nous-mêmes un problème.
 Ce serait donc assez cool de pouvoir créer des fonctions qui le fassent pour
 nous.
 
