@@ -502,7 +502,7 @@ Python 3, si vous utilisez Python 2 remplacez :func:`input` par
 :func:`raw_input`) pour ça.
 
 La fonction :func:`input` laisse l'utilisateur•trice taper un message (terminé
-par l'appuie sur la touche Entrée) puis retourne la chaine de caractère
+par l'appui sur la touche Entrée) puis retourne la chaine de caractère
 qui a été tapée::
 
     >>> input()
@@ -545,7 +545,7 @@ Ceci est une erreur Python (on dit une exception).
 L'erreur vient du fait que la fonction :func:`input` retourne une chaine de
 caractères et non pas un nombre entier.
 En Python, ``"5"`` est différent de ``5``, le premier est une chaine de
-caractère et le deuxième est un entier::
+caractères et le deuxième est un entier::
 
     >>> type("5")
     <class 'str'>
@@ -623,7 +623,7 @@ On va donc quand même envoyer le signal mais en respectant la limite::
     #ou si alors
     elif nb_sos > 10:
         print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
-        print(emit(10))
+        print(emit_sos(10))
     # sinon alors
     else:
         print(emit_sos(nb_sos))
@@ -632,7 +632,7 @@ L'utilisateur de la machine à SOS maintenant qu'il est prevenu peu informer de 
 en fonction du nombre de SOS qu'il envoie:
 
 =====================   ==================    ==================
-   Nombre de SOS           Type de Signal		Signification
+   Nombre de S.O.S         Type de Signal		Signification
 =====================   ==================    ==================
  < 5                    Avarie mineure 	      on rentre au port rapidemment
  5 – 12              	Avarie moyenne 	      patrouille de reconnaissance demandée
@@ -747,7 +747,7 @@ dans le if doivent être indentées de la même manière::
 
 Pour éviter la confusion, la plupart des développeurs Python se sont
 mis d'accord pour toujours utiliser quatre espaces pour chaque niveau
-d'identation. Nous allons nous aussi adopter cette convention::
+d'indentation. Nous allons nous aussi adopter cette convention::
 
     >>> if 2 > 1:
     ...     if 3 > 2:
@@ -765,9 +765,9 @@ Et si ce n'est pas le cas ?
 On pourrait se débrouiller pour écrire un programme en utilisant
 uniquement des :keyword:`if` ::
 
-    if nb_sos <= 5:
+    if nb_sos < 5:
         print("Avarie Mineure")
-    if nb_sos > 5:
+    if nb_sos >= 5:
         if nb_sos < 12:
             print("Avarie Moyenne")
     if nb_sos >= 12:
@@ -791,7 +791,7 @@ données après le :keyword:`if` n'ont pas été exécutées::
         if nb_sos < 12:
             print("Avarie Moyenne")
         else:
-            # Ici vous pouvez être certains que nb_sos >= 25.0
+            # Ici vous pouvez être certains que nb_sos >= 12
             # nous n'avons donc pas à le vérifier.
             print("Avarie Majeure")
 
