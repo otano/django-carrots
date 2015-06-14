@@ -11,20 +11,26 @@ tous les sondages du site, de permettre aux utilisateurs de voter et d'afficher
 l'ensemble des résultats du sondage.
 
 Ouvrons le fichier ``urls.py`` une nouvelle fois et ajoutons quatre nouvelles
-entrées. Finalement, le fichier devrait ressembler à::
+entrées::
 
-  from django.conf.urls import patterns, include, url
+  url(r'^polls/$', 'polls.views.index'),
+  url(r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
+  url(r'^polls/(?P<poll_id>\d+)/results/$', 'polls.views.results'),
+  url(r'^polls/(?P<poll_id>\d+)/vote/$', 'polls.views.vote'),
+
+Finalement, le fichier devrait ressembler à::
+
+  from django.conf.urls import include, url
 
   from django.contrib import admin
-  admin.autodiscover()
 
-  urlpatterns = patterns('',
+  urlpatterns = [
       url(r'^polls/$', 'polls.views.index'),
       url(r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
       url(r'^polls/(?P<poll_id>\d+)/results/$', 'polls.views.results'),
       url(r'^polls/(?P<poll_id>\d+)/vote/$', 'polls.views.vote'),
       url(r'^admin/', include(admin.site.urls)),
-  )
+  ]
 
 Regardons encore une fois cet exemple. Chaque argument passé à la fonction
 ``patterns`` (sauf le tout premier, mais nous reviendrons dessus plus tard)
