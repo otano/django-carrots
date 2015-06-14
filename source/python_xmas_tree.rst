@@ -522,17 +522,17 @@ combinant toute la connaissance acquise :
 
 .. testcode:: tree-final
 
-    def print_segment(n, total_width):
-        for size in range(1, n + 1, 2):
-            print((size * "*").center(total_width))
+    def print_segment(segment_size, total_width):
+        for line_size in range(1, segment_size + 1, 2):
+            print((line_size * "*").center(total_width))
 
     def print_tree(size):
-        for i in range(3, size + 1, 2):
-            print_segment(i, size)
+        for segment_size in range(3, size + 1, 2):
+            print_segment(segment_size, size)
 
     print("Choisissez la taille de votre Arbre de Noël :")
-    n = int(input())
-    print_tree(n)
+    tree_size = int(input())
+    print_tree(tree_size)
 
 .. testoutput:: tree-final
     :options: +NORMALIZE_WHITESPACE
