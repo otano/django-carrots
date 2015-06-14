@@ -119,7 +119,7 @@ Chaque objet dans la base de données est assigné à un identifiant unique::
     >>> p.question
     "What's new?"
     >>> p.pub_date
-    datetime.datetime(2014, 10, 18, 13, 0, 0, 775217)
+    datetime.datetime(2015, 10, 18, 13, 0, 0, 775217)
 
 Après la modification des attributs, nous devons encore appeler ``save()``
 pour sauvegarder les changements::
@@ -193,7 +193,7 @@ répondants à certaines conditions:
     [<Poll: What's up?>]
     >>> Poll.objects.filter(question__startswith='What')
     [<Poll: What's up?>]
-    >>> Poll.objects.get(pub_date__year=2014)
+    >>> Poll.objects.get(pub_date__year=2015)
     <Poll: What's up?>
 
     # La tentative de récupération d'un objet non présent entrainera une violente protestation de Python.
@@ -234,7 +234,7 @@ Nous pouvons avoir accès aux réponses (``Choice``) des questions:
     3
 
     # Et maintenant quelque chose de plus difficile. Que fait cet appel?
-    >>> Choice.objects.filter(poll__pub_date__year=2014)
+    >>> Choice.objects.filter(poll__pub_date__year=2015)
     [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]
 
     # Finalement, enlevons une des questions. Utilisons la méthode ``delete``.
@@ -245,7 +245,7 @@ En résumé
 ---------
 
 * Nous créons des modèles en définissant des classes héritant de``models.Model`` du fichier ``polls/models.py``.
-* Après la création d'un nouveau modèle, nous devons nous souvenir d'exécuter``python manage.py syncdb``.
+* Après la création d'un nouveau modèle, nous devons nous souvenir d'exécuter ``python manage.py makemigrations`` et ``python manage.py migrate``.
 * Pour récupérer tous les objets d'un modèle::
 
     Poll.objects.all()
