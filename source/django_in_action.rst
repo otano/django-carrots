@@ -27,9 +27,9 @@ Installez Django en exécutant la commande suivante dans la console : ``pip inst
 
 .. code-block:: sh
 
-   (workshops) ~$ pip install django==1.8.2
-   Downloading/unpacking django==1.8.2
-   Downloading Django-1.8.2-py2.py3-none-any.whl (6.2MB): 6.2MB downloaded
+   (workshops) ~$ pip install django==1.8.5
+   Downloading/unpacking django==1.8.5
+   Downloading Django-1.8.5-py2.py3-none-any.whl (6.2MB): 6.2MB downloaded
    Installing collected packages: django
    Successfully installed django
    Cleaning up...
