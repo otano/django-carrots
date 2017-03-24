@@ -2,7 +2,7 @@
 Installation
 ============
 
-Pendant nos ateliers, nous allons utiliser un interpréteur de langage Python, en version 3.4. Vous trouverez ci-dessous quelques conseils pour vérifier si vous avez déjà l'interpréteur avec la "bonne version" ou bien, dans le cas contraire, pour l'installer ainsi que quelques outils complémentaires.
+Pendant nos ateliers, nous allons utiliser un interpréteur de langage Python, en version 3.5+. Vous trouverez ci-dessous quelques conseils pour vérifier si vous avez déjà l'interpréteur avec la "bonne version" ou bien, dans le cas contraire, pour l'installer ainsi que quelques outils complémentaires.
 
 Windows
 =======
@@ -20,7 +20,9 @@ Pour vérifier la version de Python installée sur votre système, entrez la com
 .. code-block:: sh
 
     $ python --version
-    Python 3.4.0
+    Python 2.7.12+
+    $ python3 --version
+    Python 3.5.2+
 
 Si la commande ``python`` n'est pas disponible, ou si une version inférieure est détectée :
 
@@ -29,14 +31,14 @@ Ubuntu
 
 Tapez la commande suivante::
 
-    sudo apt-get install python3.4
+    sudo apt install python3.5 python3.5-dev python3-venv
 
 Fedora
 ------
 
 Entrez la commande suivante::
 
-    sudo yum install python3.4
+    sudo yum install python3.5
 
 Mac OS X
 --------
@@ -107,24 +109,12 @@ Par exemple, si votre répertoire personnel est ``C:\Users\Yara``, la ligne de c
 .. code-block:: bat
 
     :: Windows
-    C:\Users\Yara> C:\Python34\python -m venv workshops
+    C:\Users\Yara> C:\Python35\python -m venv workshops
 
 .. code-block:: sh
 
     # Linux or Mac
-    ~$ python3.4 -m venv workshops
-
-.. note::
-    Pour pouvoir fonctionner votre environnement virtuel doit installer un gestionnaire de modules complémentaires, paquets Python, appelé ``pip``.
-    Ubuntu 14.04 a un bogue (https://bugs.launchpad.net/ubuntu/+source/python3.4/+bug/1290847) qui provoque l'échec de l'installation par ``pip`` du module ``venv`` de Python3.4. Pour contourner ce problème, il faut utiliser les commandes suivantes ::
-
-        ~$ python -m venv --without-pip workshops
-        ~$ source workshops/bin/activate
-        ~$ wget https://bootstrap.pypa.io/get-pip.py
-        ~$ python get-pip.py
-        ~$ pip --version
-
-    N'hésitez pas à consulter _`https://pip.pypa.io/en/latest/installing.html` si vous souhaitez des informations supplémentaires au sujet de l'installation de ``pip``.
+    ~$ python3.5 -m venv workshops
 
 Après ces manipulations, un nouveau répertoire nommé ``workshops`` est présent dans votre répertoire personnel, contenant ce que l'on appelle un "environnement virtuel". Il convient maintenant d'activer celui-ci.
 
@@ -154,7 +144,7 @@ Assurez-vous maintenant que votre terminal est bien configuré :
     ...
 
     (workshops) C:\Users\Yara>python --version
-    3.4.0
+    3.5.3
 
 .. code-block:: sh
 
@@ -166,19 +156,19 @@ Assurez-vous maintenant que votre terminal est bien configuré :
     ...
 
     (workshops) ~$ python --version
-    3.4.0
+    3.5.2+
 
 
-.. _python.org: http://python.org/download/releases/3.4.0/
+.. _python.org: https://www.python.org/downloads/release/python-353/
 
 .. note::
     Il est possible que la commande ``pip`` soit déjà disponible sur votre système. Dans ce cas, il convient de vérifier que la version de ``pip`` est la bonne, avec la commande ``pip --version``. Elle peut être exécutée des façons suivantes :
 
     .. code-block:: sh
 
-        ~$ pip --version
-        ~$ pip3 --version
-        ~$ pip3.4 --version
+        pip --version
+        pip3 --version
+        pip3.5 --version
 
     Ceci vous indique votre version de ``pip`` ainsi que le chemin vers le répertoire contenant votre environnement virtuel.
 
@@ -186,9 +176,14 @@ Assurez-vous maintenant que votre terminal est bien configuré :
 
     .. code-block:: sh
 
-        ~$ python -m pip uninstall pip
-        ~$ python -m ensurepip
+        python -m pip uninstall pip
+        python -m ensurepip
 
+	Si vous trouvez la commande ``pip`` dans une version inférieure à ``9.x``, vous pouvez la mettre à jour à l'aide de la commande :
+
+	.. code-block:: sh
+
+		pip install -U pip
 
 En résumé
 ---------
@@ -198,12 +193,12 @@ Pour **installer un nouvel environnement virtuel** :
 .. code-block:: bat
 
     :: Windows
-    C:\Users\Yara> C:\Python34\python -m venv workshops
+    C:\Users\Yara> C:\Python35\python -m venv workshops
 
 .. code-block:: sh
 
     # Linux or Mac
-    ~$ python3.4 -m venv workshops
+    python3.5 -m venv workshops
 
 Pour **activer un environnement virtuel** :
 
@@ -215,14 +210,14 @@ Pour **activer un environnement virtuel** :
 .. code-block:: sh
 
     # Linux or Mac
-    ~$ source workshops/bin/activate
+    source workshops/bin/activate
 
 Pour **vérifier la version de Python** :
 
 .. code-block:: sh
 
     (workshops) ~$ python --version
-    3.4.0
+    3.5.2+
 
 
 IPython
