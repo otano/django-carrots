@@ -45,13 +45,18 @@ Pour démarrer, commençons par dessiner la moitié d'un Arbre de Noël :
     *****
     ******
 
-C'est pas si mal, mais nous avons du taper beaucoup de choses. Et que
-se passe-t-il si je veux un arbre plus petit ? Ou un plus grand,
-composé de centaines d'étoiles pour l'imprimer sur un poster géant au
-format A0 ? Oui ça fait certainement beaucoup trop de caractères à
-taper, quand bien même on multiplierait les caractères par centaines
-(``"*" * 100``, et ainsi de suite). Ça ressemble au genre de tâche
-qu'on confierait volontiers à un programme ça, non ?
+C'est pas si mal, mais nous avons du taper beaucoup de choses.
+
+Et que se passe-t-il si je veux un arbre plus petit ? Ou un plus
+grand, composé de centaines d'étoiles pour l'imprimer sur un poster
+géant au format A0 ?
+
+Oui ça fait certainement beaucoup trop de caractères à taper, quand
+bien même on multiplierait les caractères par centaines (``"*" *
+100``, et ainsi de suite).
+
+Ça ressemble au genre de tâche qu'on confierait volontiers à un
+programme ça, non ?
 
 
 Les listes et les boucles ``for``
@@ -74,8 +79,9 @@ distribution des cadeaux pourrait ressembler à cela::
     Disons que la liste des enfants sages, contient la liste des enfants
     qui méritent un cadeau.
 
-    Pour chaque enfant (alias ``child``), qui se trouve dans la liste des enfants sages:
-        Distribuer un cadeau à cet enfant
+    Pour chaque enfant (alias ``child``),
+      qui se trouve dans la liste des enfants sages:
+         Distribuer un cadeau à cet enfant
 
 La disposition du texte ci-dessus n'est pas une erreur, c'est en fait
 un programme Python déguisé::
@@ -89,10 +95,11 @@ un programme Python déguisé::
 
 La plupart des choses doivent vous sembler familières. On appelle deux fonctions :
 
-:func:`children_who_deserve_gifts` et :func:`deliver_gift` - leur fonctionnement interne est uniquement connu du Père Noël.
+:func:`children_who_deserve_gifts` et :func:`deliver_gift` - leur
+fonctionnement interne est uniquement connu du Père Noël.
 
-Le résultats de la première peut recevoir comme alias `children`,
-afin de se rappeler par la suite à quoi corresponds cette valeur.
+Le résultat de la première peut recevoir comme alias ``children``, afin
+de se rappeler par la suite à quoi corresponds cette valeur.
 
 Le nouvel élément, c'est la boucle elle-même, qui consiste en :
 
@@ -104,28 +111,29 @@ Le nouvel élément, c'est la boucle elle-même, qui consiste en :
 
 Attendez, nous n'avons encore rien dit à propos des listes, mais
 rassurez-vous, le concept de liste en Python est très proche du
-concept de liste dans la vie de tous les jours. Nous pouvons
-simplement nous représenter une liste en Python comme nous nous
-représentons n'importe quelle autre liste le reste du temps (liste de
-courses, liste d'invités, résultats d'examens, etc.) écrite sur une
-papier et numérotée.
+concept de liste dans la vie de tous les jours.
+
+Nous pouvons simplement nous représenter une liste en Python comme
+nous nous représentons n'importe quelle autre liste le reste du temps
+(liste de courses, liste d'invités, résultats d'examens, etc.) écrite
+sur une papier et numérotée.
 
 Commençons par une liste vide :
 
-    >>> L = []
-    >>> L
+    >>> l = []
+    >>> l
     []
 
 Quand nous le souhaitons, nous pouvons demander le nombre d'éléments
 qui se trouvent dans notre liste en utilisant la fonction:func:`len`.
 
-    >>> len(L)
+    >>> len(l)
     0
 
 Essayons avec une autre liste (qui peut avoir le même nom ou pas) :
 
-    >>> L = ["Yara", "Pierre", "Amel"]
-    >>> len(L)
+    >>> l = ["Yara", "Pierre", "Amel"]
+    >>> len(l)
     3
 
 Comme pour le cas des tuples, les éléments consécutifs d'une liste
@@ -135,13 +143,13 @@ crochets sont obligatoires.
 Pour récupérer la valeur d'un élément d'une position particulière de
 la liste (en se souvenant que les index des positions commencent à 0) :
 
-    >>> L[0]
+    >>> l[0]
     'Yara'
-    >>> L[1]
+    >>> l[1]
     'Pierre'
-    >>> L[2]
+    >>> l[2]
     'Amel'
-    >>> L[3]
+    >>> l[3]
     Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
     IndexError: list index out of range
@@ -149,7 +157,7 @@ la liste (en se souvenant que les index des positions commencent à 0) :
 On peut aussi utiliser une boucle :keyword:`for`, pour exécuter une
 instruction sur chaque élément de la liste:
 
-    >>> for name in L:
+    >>> for name in l:
     ...     print("Nom :", name)
     ...
     Nom : Yara
@@ -373,7 +381,8 @@ fonction et oublié à la fin de celle-ci. C'est pourquoi, si vous essayez d'acc
       File "<stdin>", line 1, in <module>
     NameError: name 'n' is not defined
 
-C'est comme ça notre cher Python fait le ménage à la fin d'un appel de fonction :)
+C'est comme ça que notre cher Python fait le ménage à la fin d'un
+appel de fonction :)
 
 
 Retourner un résultat
@@ -381,7 +390,7 @@ Retourner un résultat
 
 Une des propriétés principales des fonctions que nous avons utilisées
 précédement manque cruellement à nos fonctions — elles retournaient le
-résultat qu'elles avait calculé au lieu de l'écrire directement. Pour
+résultat qu'elles avaient calculé au lieu de l'écrire directement. Pour
 obtenir un comportement similaire, il faut utiliser l'instruction
 :keyword:`return`. C'est une instruction spécifique qui ne fonctionne
 qu'au sein d'une fonction.
@@ -467,7 +476,7 @@ Ce n'est pas exactement ce à quoi on s'attendait, il y a effectivement
 le bon nombre d'étoiles mais on souhaiterait qu'elle soit aligné au
 centre.
 
-La fonction :func:`unicode.center`, que vous avez peut-être trouvée en
+La fonction :func:`str.center`, que vous avez peut-être trouvée en
 répondant à la question de fin du chapitre précédent, peut nous aider:
 
 
@@ -550,8 +559,8 @@ combinant toute la connaissance acquise :
     *******
 
 
-Pour aller plus loin
---------------------
+Pour aller plus loin (facultatif)
+---------------------------------
 
 Réaliser une classe ``XMASTree`` qui pour une taille donnée et lors de
 l'appel de la méthode ``draw`` va afficher les résultats suivants
