@@ -8,7 +8,7 @@ Commençons par lancer l'interpréteur Python que nous avons installé lors du c
 .. code-block:: sh
 
     (workshops) ~$ python
-    Python 3.4.0 (...)
+    Python 3.5.2+ (...)
     Type "copyright", "credits" or "license" for more information.
 
     >>>
@@ -179,18 +179,18 @@ Morse.
 En cas d'urgence et de panique liée à cet ordinateur, vous pouvez avoir besoin
 d'envoyer un signal de détresse.
 
-Le signal de détresse, SOS (Save Our Soul) est en effet le signal le plus connu
+Le signal de détresse, S.O.S (Save Our Soul) est en effet le signal le plus connu
 pour communiquer sa situation critique par la lumière ou par le son.
 Il est utilisé par les bateaux et par les naufragé•e•s en situation de
 détresse.
 Nous allons pour notre part commencer à afficher des signaux morse depuis
-le terminal. En commencant par notre fameux signal de détresse SOS.
+le terminal. En commencant par notre fameux signal de détresse S.O.S.
 
-Pour écrire un SOS en morse :
+Pour écrire un S.O.S en morse :
 
-S.O.S va se traduire en morse par (... --- ...) soit 3 signaux courts suivis de
+S.O.S va se traduire en morse par (``... --- ...``) soit 3 signaux courts suivis de
 3 signaux longs.
-Le S est donc égal à "..." et le O à "---"
+Le S est donc égal à ``...`` et le O à ``---``
 
 Nous connaissons déjà la fonction :func:`print` (pour afficher des choses).
 Nous allons donc créer un '''programme''' qui stocke les deux lettres et leur
@@ -201,7 +201,7 @@ programme suivant :
 
 .. testcode::
 
-    print("...---...")
+    print("... --- ...")
 
 Lancez votre programme comme ceci::
 
@@ -211,12 +211,12 @@ Vous obtenez:
 
 .. testoutput::
 
-    ...---...
+    ... --- ...
 
-Comme vous le voyez notre programme a besoin de quelques améliorations:
+Comme vous le voyez notre programme a besoin de quelques améliorations :
 
-Si quelqu'un souhaite envoyer un autre message que "SOS", nous devons modifier
-le fichier ``morse.py``.
+Si quelqu'un souhaite envoyer un autre message que "S.O.S", nous devons
+modifier le fichier ``morse.py``.
 
 Programmer c'est l'art de résoudre les problèmes, alors mettons nous au travail !
 Cela va nous donner l'occasion d'apprendre de nouvelles fonctionnalités de Python.
@@ -234,17 +234,17 @@ C'est pourquoi nous donnons des noms à ces valeurs:
 
     s = "..."
     o = "---"
-    print(s + o + s)
+    print(s, o, s)
 
 Le résultat n'a pas changé:
 
 .. testoutput::
 
-    ...---...
+    ... --- ...
 
-.. note:: Ici on utilise l'opérateur ``+`` qui sert à concaténer (coller) deux
-    chaines de caractères entre elles. Tapez par exemple dans votre console
-    Python::
+.. note:: On utilise l'opérateur ``+`` qui sert à concaténer (coller)
+    deux chaines de caractères entre elles. Tapez par exemple dans
+    votre console Python::
 
         >>> "Bonjour" + " a tous et a toutes"
         'Bonjour a tous et a toutes'
@@ -260,9 +260,10 @@ quelques-unes :
     Quelques valeurs: 42 3.1415 Amelia
 
 Une variable peut être vue comme une boite portant une étiquette :
-    * Elle contient quelque chose (on dit que la variable contient une
-        ``valeur``)
-    * Elle a un nom (comme l'inscription sur l'étiquette de la boite)
+
+* Elle contient quelque chose (on dit que la variable contient une
+  ``valeur``)
+* Elle a un nom (comme l'inscription sur l'étiquette de la boite)
 
 Deux variables (ayant des noms différent) peuvent contenir la même valeur :
 
@@ -313,8 +314,8 @@ Sauf si on demande à Python de la recalculer :
     @---@
 
 Il est grand temps d'ajouter quelques commentaires à notre programme
-afin de faciliter la compréhension pour les lecteurs-trices (dont nous faisons
-parti).
+afin de faciliter la compréhension pour les lecteurs-trices (dont nous
+faisons partie).
 
 Les commentaires nous permettent de rajouter du texte dans notre code
 Python. Les commentaires seront simplement ignorés par l'interpréteur
@@ -329,7 +330,7 @@ En Python, un commentaire est tout ce qui se trouve entre un caractère
     # Code Morse du "O"
     o = "---"
 
-    aidez_moi = s + o + s # Code Morse pour "SOS"
+    aidez_moi = s + o + s # Code Morse pour "S.O.S"
     print(aidez_moi)
 
 
@@ -337,7 +338,7 @@ Les fonctions
 =============
 
 Notre programme n'est pas trop mal, mais si l'utilisateur-trice souhaite
-pouvoir envoyer plusieurs SOS, ou bien réutiliser ce bout de programme sans
+pouvoir envoyer plusieurs S.O.S, ou bien réutiliser ce bout de programme sans
 dupliquer trop de lignes, il va falloir empaqueter notre fonctionnalité
 dans ce qu'on appelle : une fonction.
 
@@ -345,7 +346,7 @@ Une fonction, c'est un mini moteur, un groupe d'instructions qui prend des
 données en entrée, execute les instructions (calcule) en utilisant (ou pas) les
 données en entrée et renvoie (ou pas) un résultat en sortie.
 
-En Python on définie une fonction comme suit::
+En Python, on définie une fonction comme suit::
 
     def nom_de_la_fonction(argument1, argument2):
         # les instructions à executer
@@ -371,7 +372,7 @@ On crée donc la fonction et on l'appelle à la fin du fichier::
     def print_sos():
         s = "..."
         o = "---"
-        print(s+o+s)
+        print(s + o + s)
 
     print_sos()
 
@@ -389,7 +390,7 @@ savoir quand le mot est terminé::
         s = "..."
         o = "---"
         stop = "|"
-        print (s+o+s+stop)
+        print(s + o + s + stop)
 
     print_sos()
 
@@ -397,7 +398,7 @@ On peut encore simplifier notre code en remarquant que ``s`` contient 3 points
 et ``o`` contient 3 tirets. Il se trouve qu'on peut dupliquer une chaine de
 caractères en utilisant la syntaxe suivante::
 
-    >>> "hello"*2
+    >>> "hello" * 2
     'hellohello'
 
 On peut donc obtenir ``"..."`` en faisant ``"." * 3``::
@@ -406,7 +407,7 @@ On peut donc obtenir ``"..."`` en faisant ``"." * 3``::
         s = "." * 3
         o = "-" * 3
         stop = "|"
-        print(s+o+s+stop)
+        print(s + o + s + stop)
 
     print_sos()
 
@@ -417,13 +418,13 @@ chose et faire le travail répétitif et ennuyeux.
 
 On a besoin de dire à la machine combien de fois on veut imprimer notre SOS.
 On va donc modifier la fonction et lui passer le nombre de fois que l'on veut
-imprimer le signal SOS en argument::
+imprimer le signal S.O.S en argument::
 
     def print_sos(nb):
         s = "." * 3
         o = "-" * 3
         stop = "|"
-        print((s+o+s+stop) * nb)
+        print((s + o + s + stop) * nb)
 
     print_sos(3)
 
@@ -432,49 +433,56 @@ Ce qui donne::
     $ python morse.py
     ...---...|...---...|...---...|
 
-Pour qu'on puisse mieux lire les différents SOS et visualiser la fin de la
+Pour qu'on puisse mieux lire les différents S.O.S et visualiser la fin de la
 phrase on va lui ajouter un retour à la ligne (``\n``)::
 
     def print_sos(nb):
         s = "." * 3
         o = "-" * 3
         stop = "|"
-        print((s+o+s+stop+"\n") * nb)
+        print((s + o + s + stop + "\n") * nb)
 
     print_sos(3)
 
 Ce qui donne lorsqu'on execute ``morse.py``::
 
-    $ python3.4 morse.py
+    $ python morse.py
     ...---...|
     ...---...|
     ...---...|
 
 On a donc une fonction qui prend en entrée le nombre de fois que l'on veut
-emettre le signal SOS. Pour l'instant elle ne se contente que d'afficher.
-Si on veut rendre ce programme encore plus facile à utiliser, imaginons par
-exemple que nous ayons un robot qui transforme le . et le - en sons différents,
-ou une machine qui allume et éteigne une lampe plus ou moins longtemps.
-On peut vouloir que cette fonction retourne la chaine de caractère du message
-à transmettre sans l'afficher dans le terminal. On pourra ensuite mettre cette
-chaine dans une variable et la passer en argument à une autre fonction dont
-le rôle sera d'émettre du son ou d'allumer une lampe.
-On va donc demander à la fonction de retourner (via ``return``) le message
-morse et donc on va changer le nom de la fonction de ``print_sos`` à
-``emit_sos``::
+emettre le signal SOS.
+
+Pour l'instant elle ne se contente que d'afficher.
+
+Si on veut rendre ce programme encore plus facile à utiliser,
+imaginons par exemple que nous ayons un robot qui transforme le . et
+le - en sons différents, ou une machine qui allume et éteigne une
+lampe plus ou moins longtemps ; on peut vouloir que cette fonction
+retourne la chaine de caractère du message à transmettre sans
+l'afficher dans le terminal.
+
+On pourra ensuite mettre cette chaine dans une variable et la passer
+en argument à une autre fonction dont le rôle sera d'émettre du son ou
+d'allumer une lampe.
+
+On va donc demander à la fonction de retourner (via ``return``) le
+message morse et donc on va changer le nom de la fonction de
+``print_sos`` à ``emit_sos``::
 
     def emit_sos(nb):
         s = "." * 3
         o = "-" * 3
         stop = "|"
-        return (s+o+s+stop) * nb
+        return (s + o + s + stop) * nb
 
     emit_sos(5)
 
 Cette fois-ci lorsqu'on execute notre programme, plus rien n'est affiché.
 
-Mais rassurez-vous, on peut toujours vérifier que celà marche en modifiant la
-dernière ligne en::
+Mais rassurez-vous, on peut toujours vérifier que cela fonctionne en
+modifiant la dernière ligne en::
 
     print(emit_sos(5))
 
@@ -490,32 +498,31 @@ ou encore allumer et éteindre un phare ::
 
     flash(emit_sos(5))
 
-Mais avant de gérer les phares et cassez les oreilles des autres, 
-nous allons plutôt interagir avec notre machine à sos et nous familiariser avec elle.
+Mais avant de gérer les phares et cassez les oreilles des autres, nous
+allons plutôt interagir avec notre machine à S.O.S et nous familiariser
+avec elle.
 
-Un peu d'interactivité avec l'utilisateur•trice serait le bienvenu, par exemple
-demander à l'utilisateur•trice de rentrer au clavier le nombre de fois qu'il
-faut afficher le SOS.
+Un peu d'interactivité avec l'utilisateur•trice serait le bienvenu,
+par exemple demander à l'utilisateur•trice de rentrer au clavier le
+nombre de fois qu'il faut afficher le SOS.
 
-Nous allons utiliser la fonction :func:`input` (fonctionne seulement avec
-Python 3, si vous utilisez Python 2 remplacez :func:`input` par
-:func:`raw_input`) pour ça.
+Nous allons utiliser la fonction :func:`input` de Python 3.
 
 La fonction :func:`input` laisse l'utilisateur•trice taper un message (terminé
 par l'appui sur la touche Entrée) puis retourne la chaine de caractère
 qui a été tapée::
 
     >>> input()
-    Bonjour a toutes et a tous
-    'Bonjour a toutes et a tous'
+    Bonjour à toutes et à tous
+    'Bonjour à toutes et à tous'
 
-Le résultat peut bien sûr être stoqué dans une variable afin de l'utiliser par
-la suite::
+Le résultat peut bien sûr être stocké dans une variable afin de
+l'utiliser par la suite::
 
     >>> message = input()
     Ceci est un test
-    >>> print("Vous avez tape : " + message)
-    Vous avez tape : Ceci est un test
+    >>> print("Vous avez tapé : " + message)
+    Vous avez tapé : Ceci est un test
 
 Essayons maintenant de l'intégrer à notre machine à SOS::
 
@@ -523,22 +530,22 @@ Essayons maintenant de l'intégrer à notre machine à SOS::
         s = "." * 3
         o = "-" * 3
         stop = "|"
-        return (s+o+s+stop) * nb
+        return (s + o + s + stop) * nb
 
-    print("Entrez le nombre de SOS que vous voulez: ")
+    print("Entrez le nombre de S.O.S que vous voulez: ")
     nb_sos = input()
     print(emit_sos(nb_sos))
 
 Voici ce que le programme donne une fois executé::
 
     $ python morse.py
-    Entrez le nombre de SOS que vous voulez:
+    Entrez le nombre de S.O.S que vous voulez:
     5
     Traceback (most recent call last):
       File "morse.py", line 9, in <module>
         print(emit_sos(nb_sos))
       File "morse.py", line 5, in emit_sos
-        return (s+o+s+stop) * nb
+        return (s + o + s + stop) * nb
     TypeError: can't multiply sequence by non-int of type 'str'
 
 Ceci est une erreur Python (on dit une exception).
@@ -554,8 +561,8 @@ caractères et le deuxième est un entier::
 
 .. note:: La fonction :func:`type` permet d'afficher le type d'une expression.
 
-Pour convertir notre chaine de caractères en entier, nous allons utiliser la
-fonction :func:`int`::
+Pour convertir notre chaîne de caractères en entier, nous allons
+utiliser la fonction :func:`int`::
 
     >>> a = "5"
     >>> a
@@ -569,16 +576,16 @@ Voici le code corrigé::
         s = "." * 3
         o = "-" * 3
         stop = "|"
-        return (s+o+s+stop) * nb
+        return (s + o + s + stop) * nb
 
-    print("Entrez le nombre de SOS que vous voulez: ")
+    print("Entrez le nombre de S.O.S que vous voulez: ")
     nb_sos = int(input())
     print(emit_sos(nb_sos))
 
 Une fois lancé::
 
     $ python morse.py
-    Entrez le nombre de SOS que vous voulez:
+    Entrez le nombre de S.O.S que vous voulez:
     5
     ...---...|...---...|...---...|...---...|...---...|
     
@@ -587,29 +594,32 @@ Une fois lancé::
 Les conditions
 ==============
 En avant vers notre prochaine problématique. 
-Maintenant on a une machine à émettre des sos autant de fois qu'on le désire.
-Mais il faut faire attention, trop de sos pour faire imploser le bateau 
+
+Maintenant on a une machine à émettre des S.O.S autant de fois qu'on le désire.
+Mais il faut faire attention, trop de S.O.S pour faire imploser le bateau 
 ou faire sauter l'élecricité ou encore simplement rendre fou le capitaine.
 
-On va donc prévenir le lanceur de SOS s'il dépasse la limite autorisée.
+On va donc prévenir le lanceur de S.O.S s'il dépasse la limite autorisée.
 On va modifier notre fichier morse.py pour ajouter des précautions d'usage::
 
     def emit_sos(nb):
         s = "." * 3
         o = "-" * 3
         stop = "|"
-        return (s+o+s+stop) * nb
+        return (s + o + s + stop) * nb
 
-    print("Entrez le nombre de SOS que vous voulez: ")
+    print("Entrez le nombre de S.O.S que vous voulez: ")
     
     nb_sos = int(input())
-    #Et maintenant nous allons vérifier que l'utilisateur n'abuse pas en nombre de sos
-    #si alors
+    # Et maintenant nous allons vérifier que
+    # l'utilisateur n'abuse pas en nombre de sos
+    # si ... alors
     if nb_sos == 0:
-        print("Pas SOS pour toi donc.")
-    #ou si alors
+        print("Pas de S.O.S pour toi donc.")
+    # ou si ... alors
     elif nb_sos > 10:
-        print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
+        print("Trop de SOS ! Stoppez ça s'il vous plait ! " +
+              "Vous allez casser la machine !")
     # sinon alors
     else:
         print(emit_sos(nb_sos))
@@ -617,19 +627,20 @@ On va modifier notre fichier morse.py pour ajouter des précautions d'usage::
 Maintenant l'utilisateur a peut être VRAIMENT un problème, il faut quand même envoyer un signal.
 On va donc quand même envoyer le signal mais en respectant la limite::
 
-    #si alors
+    # si ... alors
     if nb_sos == 0:
-        print("Pas SOS pour toi donc.")
-    #ou si alors
+        print("Pas de S.O.S pour toi donc.")
+    # ou si ... alors
     elif nb_sos > 10:
-        print("Trop de SOS! Stoppez ca s'il vous plait! Vous allez casser la machine!")
+        print("Trop de SOS ! Stoppez ça s'il vous plait ! " +
+              "Vous allez casser la machine ! Relais de 10 S.O.S")
         print(emit_sos(10))
     # sinon alors
     else:
         print(emit_sos(nb_sos))
 
-L'utilisateur de la machine à SOS maintenant qu'il est prevenu peu informer de l'urgence de sa situtation 
-en fonction du nombre de SOS qu'il envoie:
+L'utilisateur de la machine à S.O.S maintenant qu'il est prevenu peu informer de l'urgence de sa situtation 
+en fonction du nombre de S.O.S qu'il envoie:
 
 =====================   ==================    ==================
    Nombre de S.O.S         Type de Signal		Signification
@@ -639,7 +650,7 @@ en fonction du nombre de SOS qu'il envoie:
  ≥ 12                   Avarie majeure 	      envoi immédiat des forces d'interventions
 =====================   ==================    ==================
 
-Exercice : Ecrire une fonction qui va afficher le type de signal en fonction du nombre de SOS envoyé
+Exercice : Ecrire une fonction qui va afficher le type de signal en fonction du nombre de S.O.S envoyé
 (n'oubliez pas de prendre en compte s'il n'y a pas de signal)
 
 
