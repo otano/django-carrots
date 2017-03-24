@@ -248,10 +248,28 @@ Nous avons jusqu'à présent créé un projet appelé ``carrots``. Les
 projets Django sont divisés en applications qui fournissent chacune
 des fonctions spécifiques.
 
-Nous voulons publier des sondages sur notre site, nous allons donc
-créer une application nommée ``polls`` (ce qui signifie ``sondages``
-en anglais — l'anglais étant la langue la plus fréquemment utilisée au
-sein des projets informatiques).
+Dans la suite de ce tutoriel, nous allons vous présenter comment créer
+une application Django. Nous prenons comme exemple la mise en place
+d'une application de sondage.
+
+N'hésitez pas à suivre le tutoriel en faisant une autre application
+qui vous ferez plus envie.
+
+Par exemple :
+
+- Recettes de cuisine,
+- Galerie de photos,
+- Gestion d'articles ou de vidéos favorites,
+- Gestion d'une bibliothèque de livre, de vinyles ou de séries TV,
+- etc.
+
+Votre mentor vous aidera à adapter le tutoriel à votre application et
+répondra à vos questions, alors profitez-en :D
+
+Donc nous voulons publier des sondages sur notre site, nous allons
+donc créer une application nommée ``polls`` (ce qui signifie
+``sondages`` en anglais — l'anglais étant la langue la plus
+fréquemment utilisée au sein des projets informatiques).
 
 Depuis l'invite de commandes, tapez ``python manage.py startapp polls``
 ::
