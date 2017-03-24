@@ -21,7 +21,7 @@ retournait des dizaines de lignes d'information à propos de
 Tout objet a une classe
 -----------------------
 
-Une classe est le type d'un objet (un type d'objet?). Par analogie, on peut
+Une classe est le type d'un objet (un type d'objet ?). Par analogie, on peut
 dire que c'est le moule qui permet de créer l'objet.
 
 On peut tout simplement utiliser la fonction :func:`type`: pour connaitre le
@@ -246,7 +246,7 @@ Python. Désormais, lorsque que nous instancions un nouvel objet ``Dog``,
 celui-ci a un attribut: son nom.
 
 Héritage
-========
+--------
 
 Dans le chapitre précédent, nous avons créé une classe ``Dog`` comme
 sous-ensemble du type ``object``, mais ce n'est pas la seule possibilité. Nous
