@@ -2,7 +2,8 @@
 Introduction à Python
 ======================
 
-Commençons par lancer l'interpréteur Python que nous avons installé lors du chapitre précédant:
+Commençons par lancer l'interpréteur Python que nous avons installé
+lors du chapitre précédant:
 
 
 .. code-block:: sh
@@ -173,31 +174,38 @@ avons séparé l'entête du message d'avec son contenu et d'avec sa fin.
 Envoyer du Morse grâce à Python
 ===============================
 
-Essayons de créer un programme simple permettant d'envoyer des signaux en
-Morse.
+Essayons de créer un programme simple permettant d'envoyer des signaux
+en Morse.
 
-En cas d'urgence et de panique liée à cet ordinateur, vous pouvez avoir besoin
-d'envoyer un signal de détresse.
+En cas d'urgence et de panique liée à cet ordinateur, vous pouvez
+avoir besoin d'envoyer un signal de détresse.
 
-Le signal de détresse, S.O.S (Save Our Soul) est en effet le signal le plus connu
-pour communiquer sa situation critique par la lumière ou par le son.
+Le signal de détresse, S.O.S (Save Our Soul) est en effet le signal le
+plus connu pour communiquer sa situation critique par la lumière ou
+par le son.
+
 Il est utilisé par les bateaux et par les naufragé•e•s en situation de
 détresse.
-Nous allons pour notre part commencer à afficher des signaux morse depuis
-le terminal. En commencant par notre fameux signal de détresse S.O.S.
+
+Nous allons pour notre part commencer à afficher des signaux morse
+depuis le terminal. En commencant par notre fameux signal de détresse
+S.O.S.
 
 Pour écrire un S.O.S en morse :
 
-S.O.S va se traduire en morse par (``... --- ...``) soit 3 signaux courts suivis de
-3 signaux longs.
+S.O.S va se traduire en morse par (``... --- ...``) soit 3 signaux
+courts suivis de 3 signaux longs.
+
 Le S est donc égal à ``...`` et le O à ``---``
 
-Nous connaissons déjà la fonction :func:`print` (pour afficher des choses).
-Nous allons donc créer un '''programme''' qui stocke les deux lettres et leur
-équivalent en morse dans des '''variables'''.
+Nous connaissons déjà la fonction :func:`print` (pour afficher des
+choses).
 
-Pour commencer, créez un fichier ``morse.py`` puis écrivez à l'intérieur le
-programme suivant :
+Nous allons donc créer un '''programme''' qui stocke les deux lettres
+et leur équivalent en morse dans des '''variables'''.
+
+Pour commencer, créez un fichier ``morse.py`` puis écrivez à
+l'intérieur le programme suivant :
 
 .. testcode::
 
@@ -218,8 +226,12 @@ Comme vous le voyez notre programme a besoin de quelques améliorations :
 Si quelqu'un souhaite envoyer un autre message que "S.O.S", nous devons
 modifier le fichier ``morse.py``.
 
-Programmer c'est l'art de résoudre les problèmes, alors mettons nous au travail !
-Cela va nous donner l'occasion d'apprendre de nouvelles fonctionnalités de Python.
+Programmer c'est l'art de résoudre les problèmes, alors mettons nous
+au travail !
+
+Cela va nous donner l'occasion d'apprendre de nouvelles
+fonctionnalités de Python.
+
 
 Variables
 =========
@@ -249,9 +261,9 @@ Le résultat n'a pas changé:
         >>> "Bonjour" + " a tous et a toutes"
         'Bonjour a tous et a toutes'
 
-Pour mieux comprendre le fonctionnement des variables, revenons à l'invité
-de commande (aussi nommée "console") Python et essayons d'en créer
-quelques-unes :
+Pour mieux comprendre le fonctionnement des variables, revenons à
+l'invité de commande (aussi nommée "console") Python et essayons d'en
+créer quelques-unes :
 
     >>> x = 42
     >>> PI = 3.1415
@@ -265,18 +277,20 @@ Une variable peut être vue comme une boite portant une étiquette :
   ``valeur``)
 * Elle a un nom (comme l'inscription sur l'étiquette de la boite)
 
-Deux variables (ayant des noms différent) peuvent contenir la même valeur :
+Deux variables (ayant des noms différent) peuvent contenir la même
+valeur :
 
     >>> y = x
     >>> print(x, y)
     42 42
 
-Ici les deux variables ont pour noms ``y`` et ``x`` (se sont les étiquettes sur
-les boites) et elles contiennent la même valeur : ``42``
+Ici les deux variables ont pour noms ``y`` et ``x`` (se sont les
+étiquettes sur les boites) et elles contiennent la même valeur :
+``42``
 
-On peut également modifier la valeur d'une variable (changer le contenu de la
-boite). La nouvelle valeur n'a pas besoin d'être du même type
-(nombre entier, nombre décimal, texte ...) que la précédente :
+On peut également modifier la valeur d'une variable (changer le
+contenu de la boite). La nouvelle valeur n'a pas besoin d'être du même
+type (nombre entier, nombre décimal, texte ...) que la précédente :
 
     >>> x = 13
     >>> print(x)
@@ -337,14 +351,15 @@ En Python, un commentaire est tout ce qui se trouve entre un caractère
 Les fonctions
 =============
 
-Notre programme n'est pas trop mal, mais si l'utilisateur-trice souhaite
-pouvoir envoyer plusieurs S.O.S, ou bien réutiliser ce bout de programme sans
-dupliquer trop de lignes, il va falloir empaqueter notre fonctionnalité
-dans ce qu'on appelle : une fonction.
+Notre programme n'est pas trop mal, mais si l'utilisateur-trice
+souhaite pouvoir envoyer plusieurs S.O.S, ou bien réutiliser ce bout
+de programme sans dupliquer trop de lignes, il va falloir empaqueter
+notre fonctionnalité dans ce qu'on appelle : une fonction.
 
-Une fonction, c'est un mini moteur, un groupe d'instructions qui prend des
-données en entrée, execute les instructions (calcule) en utilisant (ou pas) les
-données en entrée et renvoie (ou pas) un résultat en sortie.
+Une fonction, c'est un mini moteur, un groupe d'instructions qui prend
+des données en entrée, execute les instructions (calcule) en utilisant
+(ou pas) les données en entrée et renvoie (ou pas) un résultat en
+sortie.
 
 En Python, on définie une fonction comme suit::
 
@@ -360,12 +375,13 @@ Pour executer cette fonction (on dit "appeller" la fonction)::
 
     nom_de_la_fonction(argument1, argument2)
 
-Pour récupérer la valeur de retour (résultat, sortie) de la fonction dans une
-variable::
+Pour récupérer la valeur de retour (résultat, sortie) de la fonction
+dans une variable::
 
     ma_variable = nom_de_la_fonction(argument1, argument2)
 
-Notre première fonction va se contenter d'imprimer notre signal de détresse.
+Notre première fonction va se contenter d'imprimer notre signal de
+détresse.
 
 On crée donc la fonction et on l'appelle à la fin du fichier::
 
@@ -624,8 +640,9 @@ On va modifier notre fichier morse.py pour ajouter des précautions d'usage::
     else:
         print(emit_sos(nb_sos))
 
-Maintenant l'utilisateur a peut être VRAIMENT un problème, il faut quand même envoyer un signal.
-On va donc quand même envoyer le signal mais en respectant la limite::
+Maintenant l'utilisateur a peut être VRAIMENT un problème, il faut
+quand même envoyer un signal.  On va donc quand même envoyer le signal
+mais en respectant la limite::
 
     # si ... alors
     if nb_sos == 0:
@@ -837,12 +854,17 @@ condition.
 
 Tuples
 ======
+
 Nous savons déjà que nous pouvons concaténer des chaînes de
 caractères, les multiplier par des nombres, vous allez voir qu'on peut
-aussi les formater. Tout d'abord, nous avons besoin de découvrir un nouveau type de données (en plus des ``strings`` et des nombres, ``int`` et ``float``, que nous connaissons déjà).
+aussi les formater. Tout d'abord, nous avons besoin de découvrir un
+nouveau type de données (en plus des ``strings`` et des nombres,
+``int`` et ``float``, que nous connaissons déjà).
 
 
-Rappelez-vous, je vous disais que nous ne pouvions pas utiliser les virgules dans les nombres car nous en aurions besoin par la suite pour définir les tuples. Nous y voici
+Rappelez-vous, je vous disais que nous ne pouvions pas utiliser les
+virgules dans les nombres car nous en aurions besoin par la suite pour
+définir les tuples. Nous y voici
 
     >>> 1, 2, 3
     (1, 2, 3)
