@@ -1,17 +1,18 @@
-
 Models
 ======
 
-La prochaine étape consiste en la définition du modèle de notre application.
-Le modèle décrit ce qui peut être stocké dans la base de données et comment
-cela sera stocké. Du point de vue de Python, ce n'est qu'une classe standard,
-qui hérite de ``models.Model``.
+La prochaine étape consiste en la définition du modèle de notre
+application.
 
-Notre application inclura des questions et leurs réponses, nous allons donc
-créer deux modèles : ``Poll`` et ``Choice``. Le modèle ``Poll`` contient le
-contenu des questions ainsi que la date de publication. Le modèle ``Choice``
-contient une référence vers la question adéquate, le contenu des réponses et le
-nombre de votes.
+Le modèle décrit ce qui peut être stocké dans la base de données et
+comment cela sera stocké. Du point de vue de Python, ce n'est qu'une
+classe standard, qui hérite de ``models.Model``.
+
+Notre application inclura des questions et leurs réponses, nous allons
+donc créer deux modèles : ``Poll`` et ``Choice``. Le modèle ``Poll``
+contient le contenu des questions ainsi que la date de publication. Le
+modèle ``Choice`` contient une référence vers la question adéquate, le
+contenu des réponses et le nombre de votes.
 
 Dans le fichier ``polls/models.py`` nous écrivons::
 
@@ -36,21 +37,19 @@ fichiers de migrations créés par la commande précédente.
 
     (workshops) ~/carrots$ python manage.py makemigrations
     Migrations for 'polls':
-      0001_initial.py:
+      polls/migrations/0001_initial.py:
         - Create model Choice
         - Create model Poll
         - Add field poll to choice
+
+.. code-block:: sh
+
     (workshops) ~/carrots$ python manage.py migrate
     Operations to perform:
-      Synchronize unmigrated apps: staticfiles, messages
-      Apply all migrations: admin, contenttypes, polls, auth, sessions
-    Synchronizing apps without migrations:
-      Creating tables...
-        Running deferred SQL...
-      Installing custom SQL...
+      Apply all migrations: admin, auth, contenttypes, polls, sessions
     Running migrations:
-      Rendering model states... DONE
       Applying polls.0001_initial... OK
+
 
 C'est tout ! Par contre, vous souhaitez probablement avoir la possibilité
 d'éditer les objets. La façon la plus simple de le faire est d'utiliser

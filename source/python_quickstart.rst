@@ -673,7 +673,10 @@ Exercice : Ecrire une fonction qui va afficher le type de signal en fonction du 
 Pour aller plus loin 
 --------------------
 
-Quand l'utilisateur demander plus de 10 S.O.S, vous pouvez aussi redemander à l'utilisateur le nombre de S.O.S à envoyer. Pour cela, on créé une fonction pour lui redemander à l'infini... 
+Quand l'utilisateur demande plus de 10 S.O.S, vous pouvez avoir envie
+de lui redemander le nombre de S.O.S à envoyer. Pour cela, on peut
+créer une fonction pour lui redemander à l'infini tant qu'il ou elle
+ne respecte pas la règle maximale de 10 S.O.S :
 
 .. code-block:: python 
 
@@ -685,7 +688,7 @@ Quand l'utilisateur demander plus de 10 S.O.S, vous pouvez aussi redemander à l
 
 
     def ask_for_sos():
-        print("Combien de S.O.S voulez-vous ? : ")
+        print("Combien de S.O.S voulez-vous ?")
 
         nb_sos = int(input())
 
