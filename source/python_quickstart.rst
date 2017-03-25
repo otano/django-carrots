@@ -670,6 +670,39 @@ en fonction du nombre de S.O.S qu'il envoie:
 Exercice : Ecrire une fonction qui va afficher le type de signal en fonction du nombre de S.O.S envoyé
 (n'oubliez pas de prendre en compte s'il n'y a pas de signal)
 
+Pour aller plus loin 
+--------------------
+
+Quand l'utilisateur demander plus de 10 S.O.S, vous pouvez aussi redemander à l'utilisateur le nombre de S.O.S à envoyer. Pour cela, on créé une fonction pour lui redemander à l'infini... 
+
+.. code-block:: python 
+
+    def emit_sos(nb):
+        s = "." * 3
+        o = "-" * 3
+        stop = "|"
+        return (s + o + s + stop) * nb
+
+
+    def ask_for_sos():
+        print("Combien de S.O.S voulez-vous ? : ")
+
+        nb_sos = int(input())
+
+        # Et maintenant nous allons vérifier que l'utilisateur n'abuse pas en nombre de sos
+        if nb_sos == 0:
+            print("Pas de S.O.S pour toi donc.")
+        # ou si ... alors
+        elif nb_sos > 10:
+            print("Trop de SOS ! Stoppez ça s'il vous plait ! " +
+                  "Choisissez un nb en 1 et 10!")
+            ask_for_sos()
+        # sinon alors
+        else:
+            print(emit_sos(nb_sos))
+
+    ask_for_sos()
+
 
 Conditions : vrai ou faux
 -------------------------
