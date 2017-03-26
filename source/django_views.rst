@@ -461,7 +461,7 @@ utilisateurs à faire de même.
             selected_choice.votes += 1
             selected_choice.save()
             # Redirige l'utilisateur à la vue détaillée du sonage sur laquelle il/elle vient de voter
-            return HttpResponseRedirect(reverse('polls.views.results', args=(p.id,)))
+            return HttpResponseRedirect(reverse('results', args=(p.id,)))
 
 .. admonition:: ``urls.py``
    :class: alert alert-hidden
