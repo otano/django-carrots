@@ -461,7 +461,7 @@ utilisateurs à faire de même.
             selected_choice.votes += 1
             selected_choice.save()
             # Redirige l'utilisateur à la vue détaillée du sonage sur laquelle il/elle vient de voter
-            return HttpResponseRedirect(reverse('polls.views.results', args=(p.id,)))
+            return HttpResponseRedirect(reverse('results', args=(p.id,)))
 
 .. admonition:: ``urls.py``
    :class: alert alert-hidden
@@ -474,10 +474,10 @@ utilisateurs à faire de même.
         admin.autodiscover()
 
         urlpatterns = patterns('',
-          url(r'^polls/$', 'polls.views.index'),
-          url(r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
-          url(r'^polls/(?P<poll_id>\d+)/results/$', 'polls.views.results'),
-          url(r'^polls/(?P<poll_id>\d+)/vote/$', 'polls.views.vote'),
+          url(r'^polls/$', 'views.index'),
+          url(r'^polls/(?P<poll_id>\d+)/$', 'views.detail'),
+          url(r'^polls/(?P<poll_id>\d+)/results/$', 'views.results'),
+          url(r'^polls/(?P<poll_id>\d+)/vote/$', '.views.vote'),
           url(r'^admin/', include(admin.site.urls)),
         )
 
